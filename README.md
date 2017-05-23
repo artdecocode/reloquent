@@ -13,7 +13,7 @@ which you want the promise to be rejected.
 ```js
 const reloquent = require('reloquent')
 
-const rl = reloquent('How are you today?')
+const rl = reloquent('How are you today? ')
 rl.promise.then((answer) => {
     console.log(`You've answered: %s`, answer) // no timeout
 })
@@ -22,10 +22,10 @@ rl.promise.then((answer) => {
 ```js
 const reloquent = require('reloquent')
 
-const rl = reloquent('How are you today?', 5000) // 5s timeout
+const rl = reloquent('How are you today? ', 5000) // 5s timeout
 rl.promise.catch((err) => {
     console.log(err)
-    console.log(`Nevermind...`, answer)
+    console.log('Nevermind...')
 })
 ```
 
