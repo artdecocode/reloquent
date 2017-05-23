@@ -1,6 +1,6 @@
 {
   "name": "reloquent",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A simple Node.js module to query readline",
   "main": "src/index.js",
   "scripts": {
