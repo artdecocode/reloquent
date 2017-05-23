@@ -27,6 +27,6 @@
     "zoroaster": "0.4.4"
   },
   "dependencies": {
-    "promto": "^1.0.1"
+    "promto": "1.0.1"
   }
 }

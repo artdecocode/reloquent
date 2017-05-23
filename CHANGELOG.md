@@ -1,4 +1,4 @@
-## 0.1.0 (22 May)
+## 0.1.0 (23 May)
 
-- Create `my-new-package`: a package created with `mnp`
-- [repo]: `test`, `src`
+- Create `reloquent`: reading from readline interface with a timeout
+- [repo]: `test`, `src`, `example`, `.eslintrc`
