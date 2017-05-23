@@ -15,6 +15,9 @@
     "url": "git://github.com/Sobesednik/reloquent.git"
   },
   "keywords": [
+    "promise",
+    "timeout",
+    "readline",
     "mnp"
   ],
   "author": "Anton <anton@sobesednik.media>",
