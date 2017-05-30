@@ -4,8 +4,8 @@
   "description": "A simple Node.js module to query readline",
   "main": "src/index.js",
   "scripts": {
-    "test": "zoroaster test/spec",
-    "test-watch": "zoroaster test/spec --watch"
+    "test": "cross-env ZOROASTER_TIMEOUT=20000 zoroaster test/spec",
+    "test-watch": "cross-env ZOROASTER_TIMEOUT=20000 zoroaster test/spec --watch"
   },
   "files": [
     "src/"
@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/Sobesednik/reloquent#readme",
   "devDependencies": {
+    "cross-env": "5.0.0",
     "zoroaster": "0.4.4"
   },
   "dependencies": {
