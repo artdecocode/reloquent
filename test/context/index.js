@@ -1,32 +1,20 @@
-const ask = require('../../src/ask')
-const askQuestions = require('../../src/ask-questions')
-const reloquent = require('../../src/')
+import ask from '../../src/lib/ask'
 
-function ReloquentContext() {
-  Object.assign(this, { reloquent })
-  Object.defineProperties(this, {
-    ask: {
-      value: (question, timeout) => {
-        if (this._rl) {
-          throw new Error('already exists')
-        }
-        this._rl = ask(question, timeout)
-        return this._rl
-      },
-    },
-    askQuestions: {
-      value: (questions, timeout, singleValue) => {
-        return askQuestions(questions, timeout, singleValue)
-      },
-    },
-    _destroy: {
-      value: () => {
-        if (this._rl) {
-          this._rl.close() // make sure all read lines are closed
-        }
-      },
-    },
-  })
+/**
+ * This context will proxy calls to the ask method to close the readline.
+ */
+export default class Context {
+  ask(question, timeout) {
+    if (this.rl) {
+      throw new Error('readline interface already exists')
+    }
+    this.rl = ask(question, timeout)
+    return this.rl
+  }
+  async _destroy() {
+    if (this.rl) {
+      this.rl.close()
+    }
+  }
 }
 
-module.exports = ReloquentContext
