@@ -12,7 +12,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/Sobesednik/reloquent.git"
+    "url": "git://github.com/artdecocode/reloquent.git"
   },
   "keywords": [
     "promise",
@@ -20,12 +20,12 @@
     "readline",
     "mnp"
   ],
-  "author": "Anton <anton@sobesednik.media>",
+  "author": "Anton <anton@adc.sh>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Sobesednik/reloquent/issues"
+    "url": "https://github.com/artdecocode/reloquent/issues"
   },
-  "homepage": "https://github.com/Sobesednik/reloquent#readme",
+  "homepage": "https://github.com/artdecocode/reloquent#readme",
   "devDependencies": {
     "cross-env": "5.0.0",
     "zoroaster": "0.4.4"
