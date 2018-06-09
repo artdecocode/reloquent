@@ -1,3 +1,10 @@
+## 1.0.0 (9 June)
+
+- [ecma] update to modules
+- [api] change the api to allow to ask single questions.
+- [doc] update doc
+- [package] move to [Art Deco Code](https://artdeco.bz)
+
 ## 0.2.0 (31 May)
 
 - [feature] `askQuestions`: ask multiple questions.
