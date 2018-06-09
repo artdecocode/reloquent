@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "cross-env ZOROASTER_TIMEOUT=20000 zoroaster test/spec",
-    "test-watch": "cross-env ZOROASTER_TIMEOUT=20000 zoroaster test/spec --watch"
+    "test-watch": "cross-env ZOROASTER_TIMEOUT=20000 zoroaster test/spec --watch",
+    "lint": "eslint ."
   },
   "files": [
     "src/"
