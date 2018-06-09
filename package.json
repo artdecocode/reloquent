@@ -1,11 +1,12 @@
 {
   "name": "reloquent",
   "version": "0.2.0",
-  "description": "A simple Node.js module to query readline",
-  "main": "src/index.js",
+  "description": "Ask user configurable questions via read-line.",
+  "main": "build",
   "scripts": {
     "t": "zoroaster -b",
     "test": "zoroaster test/spec -b",
+    "build": "babel src --out-dir build",
     "e": "node example",
     "example/single.js": "yarn e example/single.js",
     "example/string.js": "yarn e example/string.js",
@@ -13,17 +14,19 @@
     "lint": "eslint ."
   },
   "files": [
-    "src/"
+    "build"
   ],
   "repository": {
     "type": "git",
     "url": "git://github.com/artdecocode/reloquent.git"
   },
   "keywords": [
-    "promise",
-    "timeout",
     "readline",
-    "mnp"
+    "ask",
+    "questions",
+    "stdin",
+    "read",
+    "input"
   ],
   "author": "Anton <anton@adc.sh>",
   "license": "MIT",
