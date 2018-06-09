@@ -1,45 +1,37 @@
-const assert = require('assert')
-const events = require('events')
-const ask = require('../../src/ask')
-const ReloquentContext = require('../context/')
+import { equal, ok, throws } from 'zoroaster/assert'
+import events from 'events'
+import Context from '../context/'
 
-const askTestSuite = {
-  context: ReloquentContext,
-
-  'should be a function': () => {
-    assert.equal(typeof ask, 'function')
+/** @type {Object.<string, (c: Context)>} */
+const T = {
+  context: Context,
+  async 'returns a readline Interface'({ ask }) {
+    const rl = ask('Question: ', 100)
+    ok(rl instanceof events.EventEmitter)
+    try {
+      await rl.promise
+    } catch (err) {
+      /* OK */
+    }
   },
-  'should return a readline Interface': (ctx) => {
-    const rl = ctx.ask('', 100)
-    assert(rl instanceof events.EventEmitter)
-    return rl.promise.then(() => {}, () => {}) // timeout
+  async 'asks correct question'({ ask }) {
+    const question = 'Test question: '
+    const correct = 'OK'
+    const rl = ask(question)
+    await new Promise(r => setTimeout(r, 100))
+    process.stdin.push(`${correct}\n`)
+    const answer = await rl.promise
+    equal(answer, correct)
   },
-  'should ask correct question': (ctx) => {
-    const question = 'is this a test question? '
-    const correct = 'yes'
-    const rl = ctx.ask(question)
-    return rl.promise
-      .then((answer) => {
-        assert.equal(answer, correct, 'Well yes it was')
-      })
-  },
-  'should resolve with the answer': (ctx) => {
-    const correct = 42
-    const rl = ctx.ask('Please enter the answer to the ultimate question ')
-    return rl.promise
-      .then((answer) => {
-        assert.equal(answer, correct, 'No it\'s not')
-      })
-  },
-  'should timeout': (ctx) => {
-    const rl = ctx.ask('please don\'t enter an answer', 200)
-    assert(rl instanceof events.EventEmitter)
-    return rl.promise.then(() => {
-      throw new Error('should have timed out')
-    }, (err) => {
-      assert(/has timed out after 200ms/.test(err.message))
+  async 'times out'({ ask }) {
+    await throws({
+      async fn() {
+        const rl = ask('Timeout question: ', 200)
+        await rl.promise
+      },
+      message: /has timed out after 200ms/,
     })
   },
 }
 
-module.exports = askTestSuite
+export default T

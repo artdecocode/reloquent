@@ -1,128 +1,107 @@
-const assert = require('assert')
-const askQuestions = require('../../src/ask-questions')
-const ReloquentContext = require('../context/')
+import { throws, equal, deepEqual } from 'zoroaster/assert'
+import askQuestions from '../../src/lib/ask-questions'
 
-const askQuestionsTestSuite = {
-  context: ReloquentContext,
-
-  'should be a function': () => {
-    assert.equal(typeof askQuestions, 'function')
+const T = {
+  'is a function'() {
+    equal(typeof askQuestions, 'function')
   },
-  'should ask a question and return a value': (ctx) => {
-    const answer = 'description'
-    return ctx.askQuestions({
+  async 'asks a question and return a value'() {
+    const answer = 'description '
+    const text = 'Description'
+
+    const p = askQuestions({
       description: {
-        text: `Description: (${answer}) `,
+        text,
         postProcess: s => s.trim(),
-        defaultValue: '',
       },
-    }, null, 'description')
-      .then((res) => {
-        assert.equal(res, answer)
-      })
+    })
+    await new Promise(r => setTimeout(r, 100))
+    process.stdin.push(`${answer}\n`)
+    const { description } = await p
+    equal(description, answer.trim())
   },
-  'should ask multiple questions': (ctx) => {
+  async 'asks multiple questions'() {
     const token = 'test-token'
     const org = 'test-org'
-    const tokenErr = new Error('Please specify token')
     const questions = {
       token: {
-        text: `GitHub access token: (${token}) `,
-        validation: (a) => {
-          if (!a) {
-            throw tokenErr
-          }
-        },
+        text: 'GitHub access token',
       },
       org: {
-        text: `Organisation: (${org}) `,
-        defaultValue: null,
+        text: 'Organisation',
       },
     }
-    return ctx.askQuestions(questions)
-      .then((res) => {
-        assert.deepEqual({
-          token,
-          org,
-        }, res)
-      })
+    const p = askQuestions(questions)
+    await new Promise(r => setTimeout(r, 100))
+    process.stdin.push(`${token}\n`)
+    await new Promise(r => setTimeout(r, 100))
+    process.stdin.push(`${org}\n`)
+    const res = await p
+    deepEqual(res, {
+      token,
+      org,
+    })
   },
-  'should validate input value': (ctx) => {
+  async 'validates input value'() {
     const message = 'Please specify token'
     const error = new Error(message)
     const questions = {
       token: {
-        text: 'GitHub access token: () ',
-        validation: (a) => {
+        text: 'GitHub access token',
+        validation(a) {
           if (!a) {
             throw error
           }
         },
       },
     }
-    return ctx.askQuestions(questions)
-      .then(() => {
-        throw new Error('should have been rejected')
-      }, (err) => {
-        assert.strictEqual(err, error)
-      })
+    process.stdin.push('\n')
+    await throws({
+      fn: askQuestions,
+      args: [questions],
+      error,
+    })
   },
-  'should assign default value': (ctx) => {
+  async 'assigns default value'() {
     const defaultValue = 'default answer'
     const questionName = 'test_property'
     const questions = {
       [questionName]: {
         defaultValue,
-        text: 'some question () ',
+        text: 'What is your name',
       },
     }
-    return ctx.askQuestions(questions)
-      .then((res) => {
-        assert.deepEqual({
-          [questionName]: defaultValue,
-        }, res)
-      })
+    process.stdin.push('\n')
+    const p = askQuestions(questions)
+    const res = await p
+    deepEqual(res, {
+      [questionName]: defaultValue,
+    })
   },
-  'should execute init promise': (ctx) => {
-    const defaultValue = 'default answer'
-    const questionName = 'test_property'
-    const questions = {
-      [questionName]: {
-        defaultValue,
-        text: 'some question () ',
-      },
-    }
-    return ctx.askQuestions(questions)
-      .then((res) => {
-        assert.deepEqual({
-          [questionName]: defaultValue,
-        }, res)
-      })
-  },
-  'should return default value when no answer': (ctx) => {
-    const defaultValue = 'test@reloquent.net'
+  async 'gets a default value'() {
+    const email = 'test@reloquent.net'
     const questions = {
       email: {
-        getDefault: () => Promise.resolve(defaultValue),
-        text: 'email',
+        text: 'Email',
+        async getDefault() {
+          await new Promise(r => setTimeout(r, 100))
+          return email
+        },
       },
     }
-    return ctx.askQuestions(questions)
-      .then((res) => {
-        assert.deepEqual(res, {
-          email: defaultValue, // should test that it is also in the question
-        })
-      })
+    process.stdin.push('\n')
+    const p = askQuestions(questions)
+    const res = await p
+    deepEqual(res, {
+      email,
+    })
   },
-  'should return appropriate rejection when no object is given': (ctx) => {
-    return ctx.askQuestions()
-      .then(() => {
-        throw new Error('should have been rejected')
-      })
-      .catch((err) => {
-        assert.equal(err.message, 'Please give an object with questions')
-      })
+  async 'returns appropriate rejection when no object is given'() {
+    await throws({
+      fn: askQuestions,
+      message: 'Please give an object with questions',
+    })
   },
 }
 
-module.exports = askQuestionsTestSuite
+export default T

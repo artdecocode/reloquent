@@ -4,8 +4,12 @@
   "description": "A simple Node.js module to query readline",
   "main": "src/index.js",
   "scripts": {
-    "test": "cross-env ZOROASTER_TIMEOUT=20000 zoroaster test/spec",
-    "test-watch": "cross-env ZOROASTER_TIMEOUT=20000 zoroaster test/spec --watch",
+    "t": "zoroaster -b",
+    "test": "zoroaster test/spec -b",
+    "e": "node example",
+    "example/single.js": "yarn e example/single.js",
+    "example/string.js": "yarn e example/string.js",
+    "example/questions.js": "yarn e example/questions.js",
     "lint": "eslint ."
   },
   "files": [

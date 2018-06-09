@@ -1,15 +1,13 @@
-'use strict'
-
-const readline = require('readline')
-const promto = require('promto')
+import { createInterface } from 'readline'
+import promto from 'promto'
 
 /**
  * Ask user a question and wait for an answer.
  * @param {string} question Question to present to the user
  * @return {Promise<string>} An answer from the user
  */
-function ask(question, timeout) {
-  const rl = readline.createInterface({
+export default function ask(question, timeout) {
+  const rl = createInterface({
     input: process.stdin,
     output: process.stdout,
   })
@@ -18,16 +16,10 @@ function ask(question, timeout) {
     rejectQuestion = () => {
       reject(new Error('Question was rejected')) // no pending promises
     }
-    rl.question(question, (an) => {
-      resolve(an)
+    rl.question(question, (answer) => {
+      resolve(answer)
     })
   })
-    .then((res) => {
-      return res
-    })
-    .catch((err) => {
-      throw err
-    })
   const p = timeout ? promto(promise, timeout, `reloquent: ${question}`) : promise
   rl.promise = p.then(
     (res) => {
@@ -43,5 +35,3 @@ function ask(question, timeout) {
   )
   return rl
 }
-
-module.exports = ask
