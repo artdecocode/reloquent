@@ -6,6 +6,7 @@
   "scripts": {
     "t": "zoroaster -b",
     "test": "zoroaster test/spec -b",
+    "test-build": "BABEL_ENV=test-build zoroaster test/spec -b",
     "build": "babel src --out-dir build",
     "e": "node example",
     "example/single.js": "yarn e example/single.js",
