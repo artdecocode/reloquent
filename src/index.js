@@ -7,15 +7,17 @@ import askQuestions from './lib/ask-questions'
  * @property {function} [getDefault] A function which will get the default value, possibly asynchronously.
  * @property {function} [validation] A validation function which should throw on error.
  * @property {(s: string) => string} [postProcess] A transformation function for the answer.
+ *
+ * @typedef {Object.<string, Question>} Questions
  */
-
 
 /**
  * Ask user questions via the CLI.
- * @param {Object.<string, Question>} questions A question or a questions configuration.
+ * @param {Questions} questions A question or a questions configuration.
  * @param {number} [timeout] How long to wait before rejecting the promise. Waits forever by default.
+ * @returns {Object.<string, string>} An object with answers.
  */
-export default async function reloquent(questions, timeout) {
+async function reloquent(questions, timeout) {
   const res = await askQuestions(questions, timeout)
   return res
 }
@@ -24,8 +26,12 @@ export default async function reloquent(questions, timeout) {
  * Ask user a question via the CLI.
  * @param {string|Question} question A question or a questions configuration.
  * @param {number} [timeout] How long to wait before rejecting the promise. Waits forever by default.
+ * @returns {string} An answer to the question
  */
-export async function askSingle(question, timeout) {
+async function askSingle(question, timeout) {
   const { question: answer } = await askQuestions({ question }, timeout)
   return answer
 }
+
+export default reloquent
+export { askSingle }
