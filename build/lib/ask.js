@@ -43,3 +43,4 @@ function ask(question, timeout) {
   });
   return rl;
 }
+//# sourceMappingURL=ask.js.map
