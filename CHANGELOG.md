@@ -1,3 +1,8 @@
+## 1.0.1 (11 June 2018)
+
+- [build] build with source maps
+- [doc] document return type
+
 ## 1.0.0 (9 June 2018)
 
 - [ecma] update to modules
