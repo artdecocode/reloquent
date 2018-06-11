@@ -1,7 +1,9 @@
-const reloquent = require('../reloquent')
+import ask, { askSingle } from './build'
 
-const rl = reloquent('How are you today?', 5000) // 5s timeout
-rl.promise.catch((err) => {
-  console.log(err)
-  console.log('Nevermind...')
+(async () => {
+  try {
+    await askSingle('How are you today?', 5000)
+  } catch (err) {
+    console.log(err)
+  }
 })
