@@ -1,4 +1,4 @@
-#reloquent
+# reloquent
 
 [![npm version](https://badge.fury.io/js/reloquent.svg)](https://npmjs.org/package/reloquent)
 
@@ -10,11 +10,11 @@ yarn add -E reloquent
 
 - [API](#api)
   * [`Question` Type](#question-type)
-    * [**`text`**](#text)
-    * [`validation`](#validation)
-    * [`postProcess`](#postprocess)
-    * [`defaultValue`](#defaultvalue)
-    * [`getDefault`](#getdefault)
+    * [<strong><code>text</code></strong>](#text)
+    * [<code>validation</code>](#validation)
+    * [<code>postProcess</code>](#postprocess)
+    * [<code>defaultValue</code>](#defaultvalue)
+    * [<code>getDefault</code>](#getdefault)
   * [`async askSingle(question: string, timeout?: number): string`](#async-asksinglequestion-stringtimeout-number-string)
   * [`async askSingle(question: Question, timeout?: number): string`](#async-asksinglequestion-questiontimeout-number-string)
   * [`async ask(questions: <string, Question>, timeout?: number): object`](#async-askquestions-string-questiontimeout-number-object)
@@ -38,13 +38,116 @@ import ask, { askSingle } from 'reloquent'
 
 When asking a question which is not a string, the `question` object should have the following structure:
 
-| Property | Type | Description |
-| -------- | ---- | ----------- |
-| <a name="text">**`text`**</a> | string | Display text. Required. |
-| <a name="validation">`validation`</a> | (async) function | A function which needs to throw an error if validation does not pass. |
-| <a name="postprocess">`postProcess`</a> | (async) function | A function to transform the answer. |
-| <a name="defaultvalue">`defaultValue`</a> | string | Default answer. |
-| <a name="getdefault">`getDefault`</a> | (async) function | A function to get default value. |
+<table>
+  <tr>
+    <th>Property</th>
+    <th>Type</th>
+    <th>Description</th>
+    <th>Example</th>
+  </tr>
+  
+<tr>
+  <td><a name="text"><strong><code>text</code></strong></a></td>
+
+  <td><em>string</em></td>
+  <td>Display text. Required.</td>
+  <td>
+
+
+
+```js
+const q = {
+  text: 'What is your name',
+}
+```
+  
+  </td>
+</tr>
+
+<tr>
+  <td><a name="validation"><code>validation</code></a></td>
+
+  <td><em>(async) function</em></td>
+  <td>A function which needs to throw an error if validation does not pass.</td>
+  <td>
+
+
+
+```js
+const q = {
+  text: 'What is your name',
+  validate(v) {
+    if (!v.length) throw new Error('Name is required.')
+  },
+}
+```
+  
+  </td>
+</tr>
+
+<tr>
+  <td><a name="postprocess"><code>postProcess</code></a></td>
+
+  <td><em>(async) function</em></td>
+  <td>A function to transform the answer.</td>
+  <td>
+
+
+
+```js
+const q = {
+  text: 'What is your name',
+  postProcess(v) {
+    return `${v.toLowerCase()}`
+  },
+}
+```
+  
+  </td>
+</tr>
+
+<tr>
+  <td><a name="defaultvalue"><code>defaultValue</code></a></td>
+
+  <td><em>string</em></td>
+  <td>
+
+Default answer (shown to users in `[default]` brackets).</td>
+  <td>
+
+
+
+```js
+const q = {
+  text: 'What is your name',
+  defaultValue: 'Visitor',
+}
+```
+  
+  </td>
+</tr>
+
+<tr>
+  <td><a name="getdefault"><code>getDefault</code></a></td>
+
+  <td><em>(async) function</em></td>
+  <td>A function to execute to obtain the default value.</td>
+  <td>
+
+
+
+```js
+const q = {
+  text: 'What is your name',
+  async getDefault() {
+    await git('config', 'user.name')
+  },
+}
+```
+  
+  </td>
+</tr>
+</table>
 
 ### `async askSingle(`<br/>&nbsp;&nbsp;`question: string,`<br/>&nbsp;&nbsp;`timeout?: number,`<br/>`): string`
 
@@ -164,7 +267,7 @@ You will get the following object as the result:
 
 ## Them Questions
 
-User interaction is important in the modern day applications. `reloquent` is an eloquent way to do this task.
+User interaction is important in the modern day applications. `reloquent` is an eloquent way to do this.
 
 [![Why you asking all them questions](http://img.youtube.com/vi/C1pkVrHKDik/0.jpg)](http://www.youtube.com/watch?v=C1pkVrHKDik)
 

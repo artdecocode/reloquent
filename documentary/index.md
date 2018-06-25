@@ -1,4 +1,4 @@
-#reloquent
+# reloquent
 
 %NPM: reloquent%
 
@@ -14,11 +14,11 @@ yarn add -E reloquent
 
 There are 3 types of calls to the API:
 
-- ask a single question as a string
-- ask a single question as an object
-- ask multiple questions
+- ask a single question as a string;
+- ask a single question as an object;
+- ask multiple questions.
 
-Their respective methods can be required with `import` statement:
+Their respective methods can be required with the `import` statement:
 
 ```js
 import ask, { askSingle } from 'reloquent'
@@ -28,34 +28,75 @@ import ask, { askSingle } from 'reloquent'
 
 When asking a question which is not a string, the `question` object should have the following structure:
 
-```table
-[
-  ["Property", "Type", "Description"],
-  ["[**`text`**](t)", "string", "Display text. Required."],
-  ["[`validation`](t)", "(async) function", "A function which needs to throw an error if validation does not pass."],
-  ["[`postProcess`](t)", "(async) function", "A function to transform the answer."],
-  ["[`defaultValue`](t)", "string", "Default answer."],
-  ["[`getDefault`](t)", "(async) function", "A function to get default value."]
-]
+%TYPE true
+<p name="text" type="string" required>
+  <d>Display text. Required.</d>
+  <e>
+
+```js
+const q = {
+  text: 'What is your name',
+}
 ```
+  </e>
+</p>
+<p name="validation" type="(async) function">
+  <d>A function which needs to throw an error if validation does not pass.</d>
+  <e>
 
-<!-- %TABLE
-  ["Property", "Type", "Description"],
+```js
+const q = {
+  text: 'What is your name',
+  validate(v) {
+    if (!v.length) throw new Error('Name is required.')
+  },
+}
+```
+  </e>
+</p>
+<p name="postProcess" type="(async) function">
+  <d>A function to transform the answer.</d>
+  <e>
 
-  ["[**text**](t)", "string", "Display text. Required."],
-  ["[validation](t)", "async function", "A function which needs to throw an error if validation does not pass."],
-  ["[postProcess](t)", "async function", "A function to transform the answer."],
-  ["[defaultValue](t)", "string", "Default answer."],
-  ["[getDefault](t)", "async function", "A function to get default value."]
-% -->
+```js
+const q = {
+  text: 'What is your name',
+  postProcess(v) {
+    return `${v.toLowerCase()}`
+  },
+}
+```
+  </e>
+</p>
+<p name="defaultValue" type="string">
+  <d>
 
-<!-- \| (.+?)\s+\| (.+?)\s+\| (.+?)\s\| -->
+Default answer (shown to users in `[default]` brackets).</d>
+  <e>
 
-<!-- ["[**text**](t)", "string", "Display text. Required."]
-["[validation](t)", "async function", "A function which needs to throw an error if validation does not pass."]
-["[postProcess](t)", "async function", "A function to transform the answer."]
-["[defaultValue](t)", "string", "Default answer."]
-["[getDefault](t)", "async function", "A function to get default value."] -->
+```js
+const q = {
+  text: 'What is your name',
+  defaultValue: 'Visitor',
+}
+```
+  </e>
+</p>
+<p name="getDefault" type="(async) function">
+  <d>A function to execute to obtain the default value.</d>
+  <e>
+
+```js
+const q = {
+  text: 'What is your name',
+  async getDefault() {
+    await git('config', 'user.name')
+  },
+}
+```
+  </e>
+</p>
+%
 
 ```### async askSingle => string
 [
