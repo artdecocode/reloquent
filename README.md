@@ -20,6 +20,7 @@ yarn add -E reloquent
   * [`async ask(questions: <string, Question>, timeout?: number): object`](#async-askquestions-string-questiontimeout-number-object)
 - [Them Questions](#them-questions)
 
+
 ## API
 
 There are 3 types of calls to the API:
@@ -53,8 +54,6 @@ When asking a question which is not a string, the `question` object should have 
   <td>Display text. Required.</td>
   <td>
 
-
-
 ```js
 const q = {
   text: 'What is your name',
@@ -70,8 +69,6 @@ const q = {
   <td><em>(async) function</em></td>
   <td>A function which needs to throw an error if validation does not pass.</td>
   <td>
-
-
 
 ```js
 const q = {
@@ -91,8 +88,6 @@ const q = {
   <td><em>(async) function</em></td>
   <td>A function to transform the answer.</td>
   <td>
-
-
 
 ```js
 const q = {
@@ -115,8 +110,6 @@ const q = {
 Default answer (shown to users in `[default]` brackets).</td>
   <td>
 
-
-
 ```js
 const q = {
   text: 'What is your name',
@@ -134,8 +127,6 @@ const q = {
   <td>A function to execute to obtain the default value.</td>
   <td>
 
-
-
 ```js
 const q = {
   text: 'What is your name',
@@ -148,6 +139,7 @@ const q = {
   </td>
 </tr>
 </table>
+
 
 ### `async askSingle(`<br/>&nbsp;&nbsp;`question: string,`<br/>&nbsp;&nbsp;`timeout?: number,`<br/>`): string`
 
@@ -264,7 +256,6 @@ You will get the following object as the result:
   description: 'world',
   date: '2018-6-9 07:11:03' }
 ```
-
 ## Them Questions
 
 User interaction is important in the modern day applications. `reloquent` is an eloquent way to do this.
