@@ -165,7 +165,7 @@ What brought you her: I guess Art is the cause.
 ```
 
 ```fs
-I guess Art is the cause.
+You've answered: I guess Art is the cause.
 ```
 
 ### `async askSingle(`<br/>&nbsp;&nbsp;`question: Question,`<br/>&nbsp;&nbsp;`timeout?: number,`<br/>`): string`
