@@ -1,5 +1,9 @@
 ## 26 June 2018
 
+### 1.0.5
+
+- [dep] Remove `cross-env`.
+
 ### 1.0.4
 
 - [doc] Do prevent scroll on `npm`.
