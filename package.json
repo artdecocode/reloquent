@@ -8,13 +8,14 @@
     "test": "zoroaster test/spec -b",
     "test-build": "BABEL_ENV=test-build zoroaster test/spec -b",
     "b": "b --source-maps",
-    "d": "NODE_DEBUG=doc doc documentary -o README.md",
+    "doc": "NODE_DEBUG=doc doc documentary -o README.md",
     "build": "yarn-s b",
     "e": "node example",
     "example/single.js": "yarn e example/single.js",
     "example/string.js": "yarn e example/string.js",
     "example/questions.js": "yarn e example/questions.js",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "p": "git add documentary README.md; git commit -m t; git push;"
   },
   "files": [
     "build"
@@ -39,7 +40,7 @@
   "homepage": "https://github.com/artdecocode/reloquent#readme",
   "devDependencies": {
     "cross-env": "5.0.0",
-    "documentary": "1.7.0",
+    "documentary": "1.8.0",
     "eslint-config-artdeco": "1.0.0",
     "yarn-s": "1.1.0",
     "zoroaster": "2.1.0"
