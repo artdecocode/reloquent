@@ -39,7 +39,6 @@
   },
   "homepage": "https://github.com/artdecocode/reloquent#readme",
   "devDependencies": {
-    "cross-env": "5.0.0",
     "documentary": "1.8.0",
     "eslint-config-artdeco": "1.0.0",
     "yarn-s": "1.1.0",
