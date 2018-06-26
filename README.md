@@ -74,7 +74,9 @@ const q = {
 const q = {
   text: 'What is your name',
   validate(v) {
-    if (!v.length) throw new Error('Name is required.')
+    if (!v.length) {
+      throw new Error('Name is required.')
+    }
   },
 }
 ```
