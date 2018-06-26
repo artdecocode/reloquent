@@ -1,5 +1,9 @@
 ## 26 June 2018
 
+### 1.0.4
+
+- [doc] Do prevent scroll on `npm`.
+
 ### 1.0.3
 
 - [doc] Indent example to prevent scroll on npm.
