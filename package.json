@@ -9,7 +9,7 @@
     "test-build": "BABEL_ENV=test-build zoroaster test/spec -b",
     "b": "b --source-maps",
     "doc": "NODE_DEBUG=doc doc documentary -o README.md",
-    "build": "yarn-s b",
+    "build": "yarn-s b doc",
     "e": "node example",
     "example/single.js": "yarn e example/single.js",
     "example/string.js": "yarn e example/string.js",
