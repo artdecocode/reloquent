@@ -1,6 +1,6 @@
 {
   "name": "reloquent",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Ask user configurable questions via read-line.",
   "main": "build",
   "scripts": {
