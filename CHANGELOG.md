@@ -1,5 +1,9 @@
 ## 26 June 2018
 
+### 1.0.6
+
+- [package] Update maintainer.
+
 ### 1.0.5
 
 - [dep] Remove `cross-env`.
