@@ -70,6 +70,8 @@ async function askQuestions(questions, timeout) {
 
     if (defaultValue && gotDefaultValue && defaultValue != gotDefaultValue) {
       dv = c(defaultValue);
+    } else if (defaultValue && defaultValue == gotDefaultValue) {
+      dv = '';
     }
 
     let gtd = gotDefaultValue || '';
