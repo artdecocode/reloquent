@@ -24,7 +24,7 @@ const q = {
   text: 'What is your name',
   validate(v) {
     if (!v.length) {
-      throw new Error('Name is required.')
+      throw new Error('Name required.')
     }
   },
 }
