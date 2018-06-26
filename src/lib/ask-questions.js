@@ -51,6 +51,8 @@ export default async function askQuestions(questions, timeout) {
     let dv = defaultValue || ''
     if (defaultValue && gotDefaultValue && defaultValue != gotDefaultValue) {
       dv = c(defaultValue)
+    } else if (defaultValue && defaultValue == gotDefaultValue) {
+      dv = ''
     }
     let gtd = gotDefaultValue || ''
     const text = `${question.text}${dv ? `[${dv}] ` : ''}${gtd ? `[${gtd}] ` : ''}`
