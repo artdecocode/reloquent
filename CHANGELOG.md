@@ -1,5 +1,9 @@
 ## 26 June 2018
 
+### 1.0.3
+
+- [doc] Indent example to prevent scroll on npm.
+
 ### 1.0.2
 
 - [fix] Don't display same `defaultValue` to `getDefault` value, grey out `defaultValue` if `getDefault` takes precedence.
