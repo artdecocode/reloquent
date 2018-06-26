@@ -141,6 +141,19 @@ const q = {
 </table>
 
 
+If both `defaultValue` and `getDefault` are provided, the result of the `getDefault` takes precedence:
+
+```js
+const q = {
+  defaultValue: 'I desire it much',
+  getDefault() {
+    return 'I desire it much so'
+  },
+}
+```
+
+![getDefault will get precedence](doc/precedence.gif)
+
 ### `async askSingle(`<br/>&nbsp;&nbsp;`question: string,`<br/>&nbsp;&nbsp;`timeout?: number,`<br/>`): string`
 
 Ask a question as a string and wait for the answer. If a timeout is passed, the promise will expire after the specified number of milliseconds if answer was not given.
@@ -186,6 +199,9 @@ import { askSingle } from 'reloquent'
     defaultValue: 'I desire it much',
     postProcess(a) {
       return `${a}!`
+    },
+    async getDefault() {
+      return 'I desire it much so'
     },
   })
   console.log(answer)

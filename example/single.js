@@ -12,6 +12,9 @@ import { askSingle } from '../src'
     postProcess(a) {
       return `${a}!`
     },
+    async getDefault() {
+      return 'I desire it much so'
+    },
   })
   console.log(answer)
 })()

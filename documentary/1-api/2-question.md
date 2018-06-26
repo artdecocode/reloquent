@@ -72,3 +72,16 @@ const q = {
   </e>
 </p>
 %
+
+If both `defaultValue` and `getDefault` are provided, the result of the `getDefault` takes precedence:
+
+```js
+const q = {
+  defaultValue: 'I desire it much',
+  getDefault() {
+    return 'I desire it much so'
+  },
+}
+```
+
+![getDefault will get precedence](doc/precedence.gif)

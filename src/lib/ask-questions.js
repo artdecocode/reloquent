@@ -1,6 +1,14 @@
 import ask from './ask'
 
 /**
+ * Color foreground with grey
+ * @param {string} t
+ */
+export function c(t) {
+  return `\x1b[90m${t}\x1b[0m`
+}
+
+/**
  * Ask a set of questions.
  * @param {object} questions An object with questions as values
  * @param {number} [timeout] How long to wait before answer
@@ -30,19 +38,26 @@ export default async function askQuestions(questions, timeout) {
     }
 
     question.text = `${question.text}${question.text.endsWith('?') ? '' : ':'} `
-    if (question.defaultValue) {
-      question.text = `${question.text}[${question.defaultValue}] `
-    }
 
     let defaultValue
-    if (typeof question.getDefault == 'function') {
-      defaultValue = await question.getDefault()
-      question.text = `${question.text}[${defaultValue}] `
+    let gotDefaultValue
+    if (question.defaultValue) {
+      defaultValue = question.defaultValue
     }
-    const { promise } = ask(question.text, timeout)
+    if (question.getDefault) {
+      gotDefaultValue = await question.getDefault()
+    }
+
+    let dv = defaultValue || ''
+    if (defaultValue && gotDefaultValue && defaultValue != gotDefaultValue) {
+      dv = c(defaultValue)
+    }
+    let gtd = gotDefaultValue || ''
+    const text = `${question.text}${dv ? `[${dv}] ` : ''}${gtd ? `[${gtd}] ` : ''}`
+    const { promise } = ask(text, timeout)
 
     const a = await promise
-    let answer = a || defaultValue || question.defaultValue
+    let answer = a || gotDefaultValue || question.defaultValue
 
     if (typeof question.validation == 'function') {
       question.validation(answer)
