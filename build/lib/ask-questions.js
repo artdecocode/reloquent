@@ -3,12 +3,20 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.c = c;
 exports.default = askQuestions;
 
 var _ask = _interopRequireDefault(require("./ask"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * Color foreground with grey
+ * @param {string} t
+ */
+function c(t) {
+  return `\x1b[90m${t}\x1b[0m`;
+}
 /**
  * Ask a set of questions.
  * @param {object} questions An object with questions as values
@@ -17,6 +25,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * default values if required, and populated with answers. Validation function should either throw
  * or return nothing, or throw an error.
  */
+
+
 async function askQuestions(questions, timeout) {
   if (typeof questions != 'object') {
     throw new Error('Please give an object with questions');
@@ -45,23 +55,30 @@ async function askQuestions(questions, timeout) {
     }
 
     question.text = `${question.text}${question.text.endsWith('?') ? '' : ':'} `;
+    let defaultValue;
+    let gotDefaultValue;
 
     if (question.defaultValue) {
-      question.text = `${question.text}[${question.defaultValue}] `;
+      defaultValue = question.defaultValue;
     }
 
-    let defaultValue;
-
-    if (typeof question.getDefault == 'function') {
-      defaultValue = await question.getDefault();
-      question.text = `${question.text}[${defaultValue}] `;
+    if (question.getDefault) {
+      gotDefaultValue = await question.getDefault();
     }
 
+    let dv = defaultValue || '';
+
+    if (defaultValue && gotDefaultValue && defaultValue != gotDefaultValue) {
+      dv = c(defaultValue);
+    }
+
+    let gtd = gotDefaultValue || '';
+    const text = `${question.text}${dv ? `[${dv}] ` : ''}${gtd ? `[${gtd}] ` : ''}`;
     const {
       promise
-    } = (0, _ask.default)(question.text, timeout);
+    } = (0, _ask.default)(text, timeout);
     const a = await promise;
-    let answer = a || defaultValue || question.defaultValue;
+    let answer = a || gotDefaultValue || question.defaultValue;
 
     if (typeof question.validation == 'function') {
       question.validation(answer);
