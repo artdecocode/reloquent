@@ -1,5 +1,9 @@
 ## 8 October 2018
 
+### 1.2.1
+
+- [doc] Doc fix.
+
 ### 1.2.0
 
 - [feature] Ask for passwords behind `*`.
