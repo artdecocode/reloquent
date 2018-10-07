@@ -10,11 +10,9 @@ let ask = require('./ask'); if (ask && ask.__esModule) ask = ask.default;
 
 /**
  * Ask a set of questions.
- * @param {object} questions An object with questions as values
+ * @param {import('..').Questions} questions An object with questions as values
  * @param {number} [timeout] How long to wait before answer
- * @returns {Promise} a promise where keys from the questions object are validated, assigned
- * default values if required, and populated with answers. Validation function should either throw
- * or return nothing, or throw an error.
+ * @returns {Promise} a promise where keys from the questions object are validated, assigned default values if required, and populated with answers. Validation function should either throw or return nothing, or throw an error.
  */
                async function askQuestions(questions, timeout) {
   if (typeof questions != 'object') {
