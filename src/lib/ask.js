@@ -12,10 +12,12 @@ export default function ask(question, options = {}) {
     password = false,
     output = process.stdout,
     input = process.stdin,
+    ...rest
   } = options
   const rl = createInterface({
     input,
     output,
+    ...rest,
   })
   if (password) {
     rl._writeToOutput = (s) => {
@@ -28,22 +30,23 @@ export default function ask(question, options = {}) {
       }
     }
   }
-  const promise = new Promise((resolve, reject) => {
-    rl.on('close', () => {
-      reject('Readline was closed.')
+  const p = new Promise((resolve) => {
+    rl.question(question, answer => {
+      resolve(answer)
     })
-    rl.question(question, answer => resolve(answer))
-  }).catch(() => {})
-  const promtoPromise = timeout
-    ? promto(promise, timeout, `reloquent: ${question}`)
-    : promise
-  rl.promise = makePromise(promtoPromise, rl)
+    rl.once('close', () => resolve())
+  })
+  const promise = timeout
+    ? promto(p, timeout, `reloquent: ${question}`)
+    : p
+  rl.promise = makePromise(promise, rl)
   return rl
 }
 
-const makePromise = async (promtoPromise, rl) => {
+const makePromise = async (promise, rl) => {
   try {
-    return await promtoPromise
+    const res = await promise
+    return res
   } finally {
     rl.close()
   }
