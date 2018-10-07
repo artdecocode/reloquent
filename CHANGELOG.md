@@ -1,5 +1,9 @@
 ## 8 October 2018
 
+### 1.2.0
+
+- [feature] Ask for passwords behind `*`.
+
 ### 1.1.0
 
 - [feature] Ask for confirmation.
