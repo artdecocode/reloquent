@@ -1,5 +1,9 @@
 ## 8 October 2018
 
+### 1.2.2
+
+- [fix] Fix displaying newline when writing password.
+
 ### 1.2.1
 
 - [doc] Doc fix.
