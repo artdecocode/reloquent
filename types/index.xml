@@ -15,6 +15,9 @@
     <prop opt name="postProcess" type="(answer: string) => string">
       The transformation function for the answer.
     </prop>
+    <prop name="password" boolean default="false">
+      Hide the inputs behind `*` when typing the answer.
+    </prop>
   </type>
   <type name="Questions" type="Object.<string, Question>" desc="A set of questions." />
 </types>

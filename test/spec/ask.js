@@ -6,7 +6,7 @@ import Context from '../context/'
 const T = {
   context: Context,
   async 'returns a readline Interface'({ ask }) {
-    const rl = ask('Question: ', 100)
+    const rl = ask('Question: ', { timeout: 100 })
     ok(rl instanceof events.EventEmitter)
     try {
       await rl.promise
@@ -26,7 +26,7 @@ const T = {
   async 'times out'({ ask }) {
     await throws({
       async fn() {
-        const { promise } = ask('Timeout question: ', 200)
+        const { promise } = ask('Timeout question: ', { timeout: 200 })
         await promise
       },
       message: /has timed out after 200ms/,

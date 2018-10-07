@@ -12,11 +12,10 @@ export default class Context {
       ORIGINAL_WRITE(...args)
     }
   }
-  ask(question, timeout) {
-    if (this.rl) {
+  ask(question, options) {
+    if (this.rl)
       throw new Error('readline interface already exists')
-    }
-    this.rl = ask(question, timeout)
+    this.rl = ask(question, options)
     return this.rl
   }
   async _destroy() {

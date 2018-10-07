@@ -72,6 +72,18 @@ const q = {
 ```
   </e>
 </p>
+<p name="password" type="boolean">
+  <d>Hide the inputs behind `*` when typing the answer.</d>
+  <e>
+
+```js
+const q = {
+  text: 'Please enter the password',
+  password: true,
+}
+```
+  </e>
+</p>
 %
 
 If both `defaultValue` and `getDefault` are provided, the result of the `getDefault` takes precedence:
@@ -86,5 +98,10 @@ const q = {
 ```
 
 ![getDefault will get precedence](doc/precedence.gif)
+
+When the `password` property is set to true, the answer will be hidden behind the `*` symbols.
+
+%EXAMPLE: example/password/fork.js, ../../src => reloquent%
+%FORK example example/password%
 
 %~%

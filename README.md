@@ -15,6 +15,7 @@ yarn add -E reloquent
   * [<code>postProcess</code>](#postprocess)
   * [<code>defaultValue</code>](#defaultvalue)
   * [<code>getDefault</code>](#getdefault)
+  * [<code>password</code>](#password)
 - [`async askSingle(question: string, timeout?: number): string`](#async-asksinglequestion-stringtimeout-number-string)
 - [`async askSingle(question: Question, timeout?: number): string`](#async-asksinglequestion-questiontimeout-number-string)
 - [`async ask(questions: <string, Question>, timeout?: number): object`](#async-askquestions-string-questiontimeout-number-object)
@@ -136,6 +137,20 @@ const q = {
 ```
   </td>
   </tr>
+  <tr>
+   <td><a name="password"><code>password</code></a></td>
+   <td><em>boolean</em></td>
+   <td>Hide the inputs behind `*` when typing the answer.</td>
+   <td>
+
+```js
+const q = {
+  text: 'Please enter the password',
+  password: true,
+}
+```
+  </td>
+  </tr>
  </tbody>
 </table>
 
@@ -152,6 +167,23 @@ const q = {
 ```
 
 ![getDefault will get precedence](doc/precedence.gif)
+
+When the `password` property is set to true, the answer will be hidden behind the `*` symbols.
+
+```js
+import { askSingle  } from 'reloquent'
+
+const Password = async () => {
+  const res = await askSingle({
+    text: 'Please enter the password',
+    password: true,
+  })
+  return res
+}
+```
+```
+Please enter the password: ********
+```
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/2.svg?sanitize=true"></a></p>
 
@@ -259,12 +291,12 @@ If when provided with the following answers (leaving _Date_ as it is), the resul
 ```
 Title: hello
 Description: [A test default value] world
-Date: [2018-10-8 00:47:47] 
+Date: [2018-10-8 01:44:59] 
 
 Result: {
   "title": "hello",
   "description": "world",
-  "date": "2018-10-8 00:47:47"
+  "date": "2018-10-8 01:44:59"
 }
 ```
 
