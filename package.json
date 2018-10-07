@@ -4,18 +4,18 @@
   "description": "Ask user configurable questions via read-line.",
   "main": "build",
   "scripts": {
-    "t": "zoroaster -b",
-    "test": "zoroaster test/spec -b",
-    "test-build": "BABEL_ENV=test-build zoroaster test/spec -b",
-    "b": "b --source-maps",
+    "t": "zoroaster -a",
+    "test": "yarn t test/spec test/mask",
+    "mask": "yarn t test/mask",
+    "test-build": "ALAMODE_ENV=test-build yarn test",
+    "b": "alamode src -o build -s",
     "doc": "NODE_DEBUG=doc doc documentary -o README.md",
     "build": "yarn-s b doc",
     "e": "node example",
     "example/single.js": "yarn e example/single.js",
     "example/string.js": "yarn e example/string.js",
     "example/questions.js": "yarn e example/questions.js",
-    "lint": "eslint .",
-    "p": "git add documentary README.md; git commit -m t; git push;"
+    "lint": "eslint ."
   },
   "files": [
     "build"
@@ -39,10 +39,11 @@
   },
   "homepage": "https://github.com/artdecocode/reloquent#readme",
   "devDependencies": {
-    "documentary": "1.8.0",
-    "eslint-config-artdeco": "1.0.0",
+    "alamode": "1.5.1",
+    "documentary": "1.20.1",
+    "eslint-config-artdeco": "1.0.1",
     "yarn-s": "1.1.0",
-    "zoroaster": "2.1.0"
+    "zoroaster": "3.6.2"
   },
   "dependencies": {
     "promto": "1.0.1"

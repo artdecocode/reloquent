@@ -1,14 +1,4 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.askSingle = askSingle;
-exports.default = void 0;
-
-var _askQuestions = _interopRequireDefault(require("./lib/ask-questions"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+let askQuestions = require('./lib/ask-questions'); if (askQuestions && askQuestions.__esModule) askQuestions = askQuestions.default;
 
 /**
  * @typedef {Object} Question
@@ -28,26 +18,23 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @returns {Object.<string, string>} An object with answers.
  */
 async function reloquent(questions, timeout) {
-  const res = await (0, _askQuestions.default)(questions, timeout);
-  return res;
+  const res = await askQuestions(questions, timeout)
+  return res
 }
+
 /**
  * Ask user a question via the CLI.
  * @param {string|Question} question A question or a questions configuration.
  * @param {number} [timeout] How long to wait before rejecting the promise. Waits forever by default.
  * @returns {string} An answer to the question
  */
-
-
 async function askSingle(question, timeout) {
-  const {
-    question: answer
-  } = await (0, _askQuestions.default)({
-    question
-  }, timeout);
-  return answer;
+  const { question: answer } = await askQuestions({ question }, timeout)
+  return answer
 }
 
-var _default = reloquent;
-exports.default = _default;
-//# sourceMappingURL=index.js.map
+module.exports=reloquent
+
+
+
+module.exports.askSingle = askSingle
