@@ -1,5 +1,4 @@
-
-### `Question` Type
+## `Question` Type
 
 When asking a question which is not a string, the `question` object should have the following structure:
 
@@ -87,3 +86,5 @@ const q = {
 ```
 
 ![getDefault will get precedence](doc/precedence.gif)
+
+%~%

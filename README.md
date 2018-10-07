@@ -2,73 +2,79 @@
 
 [![npm version](https://badge.fury.io/js/reloquent.svg)](https://npmjs.org/package/reloquent)
 
-`reloquent` allows to ask users a question, or a series of questions via the read-line interface.
+`reloquent` allows to ask users a question, a confirmation (y/n), or a series of questions via the read-line interface.
 
 ```sh
 yarn add -E reloquent
 ```
 
 - [API](#api)
-  * [`Question` Type](#question-type)
-    * [<strong><code>text</code></strong>](#text)
-    * [<code>validation</code>](#validation)
-    * [<code>postProcess</code>](#postprocess)
-    * [<code>defaultValue</code>](#defaultvalue)
-    * [<code>getDefault</code>](#getdefault)
-  * [`async askSingle(question: string, timeout?: number): string`](#async-asksinglequestion-stringtimeout-number-string)
-  * [`async askSingle(question: Question, timeout?: number): string`](#async-asksinglequestion-questiontimeout-number-string)
-  * [`async ask(questions: <string, Question>, timeout?: number): object`](#async-askquestions-string-questiontimeout-number-object)
-- [Them Questions](#them-questions)
+- [`Question` Type](#question-type)
+  * [<strong><code>text*</code></strong>](#text)
+  * [<code>validation</code>](#validation)
+  * [<code>postProcess</code>](#postprocess)
+  * [<code>defaultValue</code>](#defaultvalue)
+  * [<code>getDefault</code>](#getdefault)
+- [`async askSingle(question: string, timeout?: number): string`](#async-asksinglequestion-stringtimeout-number-string)
+- [`async askSingle(question: Question, timeout?: number): string`](#async-asksinglequestion-questiontimeout-number-string)
+- [`async ask(questions: <string, Question>, timeout?: number): object`](#async-askquestions-string-questiontimeout-number-object)
+- [`async confirm(question: string, options: confirmOptions): boolean`](#async-confirmquestion-stringoptions-confirmoptions-boolean)
+  * [`ConfirmOptions`](#type-confirmoptions)
+- [Copyright](#copyright)
+
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/0.svg?sanitize=true"></a></p>
+
 
 
 ## API
 
-There are 3 types of calls to the API:
+There are 4 types of calls to the API:
 
 - ask a single question as a string;
 - ask a single question as an object;
 - ask multiple questions.
+- ask for a confirmation;
 
-Their respective methods can be required with the `import` statement:
+Their respective methods can be accessed via the `import` statement:
 
 ```js
-import ask, { askSingle } from 'reloquent'
+import ask, { askSingle, confirm } from 'reloquent'
 ```
 
-### `Question` Type
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/1.svg?sanitize=true"></a></p>
+
+## `Question` Type
 
 When asking a question which is not a string, the `question` object should have the following structure:
 
 <table>
+ <thead>
   <tr>
-    <th>Property</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Example</th>
+   <th>Property</th>
+   <th>Type</th>
+   <th>Description</th>
+   <th>Example</th>
   </tr>
-  
-<tr>
-  <td><a name="text"><strong><code>text</code></strong></a></td>
-
-  <td><em>string</em></td>
-  <td>Display text. Required.</td>
-  <td>
+ </thead>
+ <tbody>
+  <tr>
+   <td><a name="text"><strong><code>text*</code></strong></a></td>
+   <td><em>string</em></td>
+   <td>Display text. Required.</td>
+   <td>
 
 ```js
 const q = {
   text: 'What is your name',
 }
 ```
-  
   </td>
-</tr>
-
-<tr>
-  <td><a name="validation"><code>validation</code></a></td>
-
-  <td><em>(async) function</em></td>
-  <td>A function which needs to throw an error if validation does not pass.</td>
-  <td>
+  </tr>
+  <tr>
+   <td><a name="validation"><code>validation</code></a></td>
+   <td><em>(async) function</em></td>
+   <td>A function which needs to throw an error if validation does not pass.</td>
+   <td>
 
 ```js
 const q = {
@@ -80,16 +86,13 @@ const q = {
   },
 }
 ```
-  
   </td>
-</tr>
-
-<tr>
-  <td><a name="postprocess"><code>postProcess</code></a></td>
-
-  <td><em>(async) function</em></td>
-  <td>A function to transform the answer.</td>
-  <td>
+  </tr>
+  <tr>
+   <td><a name="postprocess"><code>postProcess</code></a></td>
+   <td><em>(async) function</em></td>
+   <td>A function to transform the answer.</td>
+   <td>
 
 ```js
 const q = {
@@ -99,18 +102,15 @@ const q = {
   },
 }
 ```
-  
   </td>
-</tr>
-
-<tr>
-  <td><a name="defaultvalue"><code>defaultValue</code></a></td>
-
-  <td><em>string</em></td>
-  <td>
+  </tr>
+  <tr>
+   <td><a name="defaultvalue"><code>defaultValue</code></a></td>
+   <td><em>string</em></td>
+   <td>
 
 Default answer (shown to users in `[default]` brackets).</td>
-  <td>
+   <td>
 
 ```js
 const q = {
@@ -118,16 +118,13 @@ const q = {
   defaultValue: 'Visitor',
 }
 ```
-  
   </td>
-</tr>
-
-<tr>
-  <td><a name="getdefault"><code>getDefault</code></a></td>
-
-  <td><em>(async) function</em></td>
-  <td>A function to execute to obtain the default value.</td>
-  <td>
+  </tr>
+  <tr>
+   <td><a name="getdefault"><code>getDefault</code></a></td>
+   <td><em>(async) function</em></td>
+   <td>A function to execute to obtain the default value.</td>
+   <td>
 
 ```js
 const q = {
@@ -137,9 +134,9 @@ const q = {
   },
 }
 ```
-  
   </td>
-</tr>
+  </tr>
+ </tbody>
 </table>
 
 
@@ -156,11 +153,13 @@ const q = {
 
 ![getDefault will get precedence](doc/precedence.gif)
 
-### `async askSingle(`<br/>&nbsp;&nbsp;`question: string,`<br/>&nbsp;&nbsp;`timeout?: number,`<br/>`): string`
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/2.svg?sanitize=true"></a></p>
 
-Ask a question as a string and wait for the answer. If a timeout is passed, the promise will expire after the specified number of milliseconds if answer was not given.
+## `async askSingle(`<br/>&nbsp;&nbsp;`question: string,`<br/>&nbsp;&nbsp;`timeout?: number,`<br/>`): string`
 
-```javascript
+Ask a question as a string and wait for the answer. If a timeout is passed, the promise will expire after the specified number of milliseconds if the answer was not given.
+
+```js
 import { askSingle } from 'reloquent'
 
 (async () => {
@@ -183,11 +182,13 @@ What brought you her: I guess Art is the cause.
 You've answered: I guess Art is the cause.
 ```
 
-### `async askSingle(`<br/>&nbsp;&nbsp;`question: Question,`<br/>&nbsp;&nbsp;`timeout?: number,`<br/>`): string`
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true"></a></p>
+
+## `async askSingle(`<br/>&nbsp;&nbsp;`question: Question,`<br/>&nbsp;&nbsp;`timeout?: number,`<br/>`): string`
 
 Ask a question which is passed as an object of the [`Question`](#question-type) type, and return a string.
 
-```javascript
+```js
 import { askSingle } from 'reloquent'
 
 (async () => {
@@ -218,70 +219,78 @@ Do you wish me to stay so long? [I desire it much]
 I desire it much!
 ```
 
-### `async ask(`<br/>&nbsp;&nbsp;`questions: <string, Question>,`<br/>&nbsp;&nbsp;`timeout?: number,`<br/>`): object`
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/4.svg?sanitize=true"></a></p>
+
+## `async ask(`<br/>&nbsp;&nbsp;`questions: <string, Question>,`<br/>&nbsp;&nbsp;`timeout?: number,`<br/>`): object`
 
 Ask a series of questions and transform them into answers.
 
-```javascript
+```js
 import ask from 'reloquent'
 
-const questions = {
-  title: {
-    text: 'Title',
-    validation: (a) => {
-      if (!a) {
-        throw new Error('Please enter a title.')
-      }
+const Ask = async () => {
+  const questions = {
+    title: {
+      text: 'Title',
+      validation(a) {
+        if (!a) throw new Error('Please enter the title.')
+      },
     },
-  },
-  description: {
-    text: 'Description',
-    postProcess: s => s.trim(),
-    defaultValue: 'A test default value',
-  },
-  date: {
-    text: 'Date',
-    async getDefault() {
-      await new Promise(r => setTimeout(r, 200))
-      return new Date().toLocaleString()
+    description: {
+      text: 'Description',
+      postProcess: s => s.trim(),
+      defaultValue: 'A test default value',
     },
-  },
-}
-
-;(async () => {
-  try {
-    const answers = await ask(questions)
-    console.log(answers)
-  } catch (err) {
-    console.log()
-    console.log(err)
+    date: {
+      text: 'Date',
+      async getDefault() {
+        await new Promise(r => setTimeout(r, 200))
+        return new Date().toLocaleString()
+      },
+    },
   }
-})()
+  const res = await ask(questions)
+  return res
+}
 ```
 
-If you provide the following answers (leaving _Date_ as it is):
+If when provided with the following answers (leaving _Date_ as it is), the result will be returned as an object:
 
-```fs
+```
 Title: hello
 Description: [A test default value] world
-Date: [2018-6-9 07:11:03]
+
+Date: [2018-10-8 00:30:45] Result: [object Object]
 ```
 
-You will get the following object as the result:
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/5.svg?sanitize=true"></a></p>
+
+## `async confirm(`<br/>&nbsp;&nbsp;`question: string,`<br/>&nbsp;&nbsp;`options: confirmOptions,`<br/>`): boolean`
+
+Ask a yes or no question.
+
+__<a name="type-confirmoptions">`ConfirmOptions`</a>__: Options for the confirmation question.
+
+|    Name    |   Type    |                               Description                                | Default |
+| ---------- | --------- | ------------------------------------------------------------------------ | ------- |
+| defaultYes | _boolean_ | Whether the default value is _yes_.                                      | `true`  |
+| timeout    | _number_  | How long to wait before rejecting the promise. Waits forever by default. | -       |
 
 ```js
-{ title: 'hello',
-  description: 'world',
-  date: '2018-6-9 07:11:03' }
+import { confirm } from 'reloquent'
+
+const Confirm = async (question) => {
+  const res = await confirm(question, {
+    defaultYes: false,
+  })
+  return res
+}
 ```
-## Them Questions
 
-User interaction is important in the modern day applications. `reloquent` is an eloquent way to do this.
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/6.svg?sanitize=true"></a></p>
 
-[![Why you asking all them questions](http://img.youtube.com/vi/C1pkVrHKDik/0.jpg)](http://www.youtube.com/watch?v=C1pkVrHKDik)
+## Copyright
 
----
-
-(c) [Art Deco Code][1] 2018
+(c) [Art Deco][1] 2018
 
 [1]: https://artdeco.bz

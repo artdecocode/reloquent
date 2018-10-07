@@ -17,17 +17,17 @@ const T = {
   async 'asks correct question'({ ask }) {
     const question = 'Test question: '
     const correct = 'OK'
-    const rl = ask(question)
+    const { promise } = ask(question)
     await new Promise(r => setTimeout(r, 100))
     process.stdin.push(`${correct}\n`)
-    const answer = await rl.promise
+    const answer = await promise
     equal(answer, correct)
   },
   async 'times out'({ ask }) {
     await throws({
       async fn() {
-        const rl = ask('Timeout question: ', 200)
-        await rl.promise
+        const { promise } = ask('Timeout question: ', 200)
+        await promise
       },
       message: /has timed out after 200ms/,
     })

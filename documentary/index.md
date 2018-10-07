@@ -2,13 +2,15 @@
 
 %NPM: reloquent%
 
-`reloquent` allows to ask users a question, or a series of questions via the read-line interface.
+`reloquent` allows to ask users a question, a confirmation (y/n), or a series of questions via the read-line interface.
 
 ```sh
 yarn add -E reloquent
 ```
 
 %TOC%
+
+%~%
 
 <!-- ## todo
 

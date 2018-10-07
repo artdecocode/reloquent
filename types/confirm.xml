@@ -1,0 +1,11 @@
+<types>
+  <type name="ConfirmOptions"
+    desc="Options for the confirmation question.">
+    <prop boolean name="defaultYes" default="true">
+      Whether the default value is _yes_.
+    </prop>
+    <prop number opt name="timeout">
+      How long to wait before rejecting the promise. Waits forever by default.
+    </prop>
+  </type>
+</types>
