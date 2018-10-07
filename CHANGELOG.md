@@ -1,3 +1,10 @@
+## 8 October 2018
+
+### 1.1.0
+
+- [feature] Ask for confirmation.
+- [package] Build with `alamode`.
+
 ## 26 June 2018
 
 ### 1.0.6
