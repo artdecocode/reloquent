@@ -259,12 +259,12 @@ If when provided with the following answers (leaving _Date_ as it is), the resul
 ```
 Title: hello
 Description: [A test default value] world
-Date: [2018-10-8 00:46:49] 
+Date: [2018-10-8 00:47:47] 
 
 Result: {
   "title": "hello",
   "description": "world",
-  "date": "2018-10-8 00:46:49"
+  "date": "2018-10-8 00:47:47"
 }
 ```
 
@@ -305,3 +305,5 @@ Result: true
 (c) [Art Deco][1] 2018
 
 [1]: https://artdeco.bz
+
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/-1.svg?sanitize=true"></a></p>
