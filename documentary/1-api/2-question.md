@@ -73,7 +73,7 @@ const q = {
   </e>
 </p>
 <p name="password" type="boolean">
-  <d>Hide the inputs behind `*` when typing the answer.</d>
+  <d>Hide the inputs behind <code>*</code> when typing the answer.</d>
   <e>
 
 ```js

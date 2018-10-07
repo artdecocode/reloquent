@@ -140,7 +140,7 @@ const q = {
   <tr>
    <td><a name="password"><code>password</code></a></td>
    <td><em>boolean</em></td>
-   <td>Hide the inputs behind `*` when typing the answer.</td>
+   <td>Hide the inputs behind <code>*</code> when typing the answer.</td>
    <td>
 
 ```js
@@ -291,12 +291,12 @@ If when provided with the following answers (leaving _Date_ as it is), the resul
 ```
 Title: hello
 Description: [A test default value] world
-Date: [2018-10-8 01:44:59] 
+Date: [2018-10-8 02:23:29] 
 
 Result: {
   "title": "hello",
   "description": "world",
-  "date": "2018-10-8 01:44:59"
+  "date": "2018-10-8 02:23:29"
 }
 ```
 
