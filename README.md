@@ -259,8 +259,13 @@ If when provided with the following answers (leaving _Date_ as it is), the resul
 ```
 Title: hello
 Description: [A test default value] world
+Date: [2018-10-8 00:46:49] 
 
-Date: [2018-10-8 00:30:45] Result: [object Object]
+Result: {
+  "title": "hello",
+  "description": "world",
+  "date": "2018-10-8 00:46:49"
+}
 ```
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/5.svg?sanitize=true"></a></p>
@@ -285,6 +290,12 @@ const Confirm = async (question) => {
   })
   return res
 }
+```
+
+```
+Do you wish to continue (y/n): [n] y
+
+Result: true
 ```
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/6.svg?sanitize=true"></a></p>

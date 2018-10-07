@@ -34,5 +34,6 @@ const Ask = async () => {
   await answer('world')
   await answer('')
   const res = await p
-  console.log('Result: %s', res)
+  console.log('\nResult: %s', JSON.stringify(res, null, 2))
+  process.exit()
 })()

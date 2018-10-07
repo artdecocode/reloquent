@@ -14,5 +14,6 @@ const Confirm = async (question) => {
   const p = Confirm('Do you wish to continue')
   await answer('y')
   const res = await p
-  console.log('Result: %s', res)
+  console.log('\nResult: %s', JSON.stringify(res, null, 2))
+  process.exit()
 })()

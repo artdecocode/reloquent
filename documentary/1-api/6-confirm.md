@@ -11,6 +11,6 @@ Ask a yes or no question.
 
 %EXAMPLE: example/confirm.js, ../src => reloquent%
 
-<!-- %FORK example example/confirm% -->
+%FORK example example/confirm%
 
 %~%

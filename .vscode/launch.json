@@ -10,7 +10,7 @@
       "name": "Launch Example",
       "program": "${workspaceFolder}/example/index.js",
       "args": [
-        "example/confirm"
+        "example/questions"
       ],
       "console": "integratedTerminal",
       "skipFiles": [
