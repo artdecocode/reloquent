@@ -21,6 +21,9 @@ export default function ask(question, options = {}) {
   })
   if (password) {
     rl._writeToOutput = (s) => {
+      if (['\r\n', '\n', '\r'].includes(s))
+        return rl.output.write(s)
+
       const v = s.split(question)
       if (v.length == '2') {
         rl.output.write(question)

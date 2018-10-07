@@ -21,6 +21,9 @@ let promto = require('promto'); if (promto && promto.__esModule) promto = promto
   })
   if (password) {
     rl._writeToOutput = (s) => {
+      if (['\r\n', '\n', '\r'].includes(s))
+        return rl.output.write(s)
+
       const v = s.split(question)
       if (v.length == '2') {
         rl.output.write(question)
