@@ -15,9 +15,9 @@ let ask = require('./ask'); if (ask && ask.__esModule) ask = ask.default;
  * @returns {Promise} a promise where keys from the questions object are validated, assigned default values if required, and populated with answers. Validation function should either throw or return nothing, or throw an error.
  */
                async function askQuestions(questions, timeout) {
-  if (typeof questions != 'object') {
+  if (typeof questions != 'object')
     throw new Error('Please give an object with questions')
-  }
+
   const keys = Object.keys(questions)
   const res = await keys.reduce(async (acc, key) => {
     const accRes = await acc
@@ -54,7 +54,10 @@ let ask = require('./ask'); if (ask && ask.__esModule) ask = ask.default;
     }
     let gtd = gotDefaultValue || ''
     const text = `${question.text}${dv ? `[${dv}] ` : ''}${gtd ? `[${gtd}] ` : ''}`
-    const { promise } = ask(text, timeout)
+    const { promise } = ask(text, {
+      timeout,
+      password: question.password,
+    })
 
     const a = await promise
     let answer = a || gotDefaultValue || question.defaultValue

@@ -3,38 +3,50 @@ let promto = require('promto'); if (promto && promto.__esModule) promto = promto
 
 /**
  * Ask user a question and wait for an answer.
- * @param {string} question Question to present to the user
- * @return {Promise<string>} An answer from the user
+ * @param {string} question Question to present to the user.
+ * @param {{ password: boolean, timeout?: number }} options The options.
  */
-               function ask(question, timeout) {
+               function ask(question, options = {}) {
+  const {
+    timeout,
+    password = false,
+    output = process.stdout,
+    input = process.stdin,
+  } = options
   const rl = createInterface({
-    input: process.stdin,
-    output: process.stdout,
+    input,
+    output,
   })
-  let rejectQuestion
+  if (password) {
+    rl._writeToOutput = (s) => {
+      const v = s.split(question)
+      if (v.length == '2') {
+        rl.output.write(question)
+        rl.output.write('*'.repeat(v[1].length))
+      } else {
+        rl.output.write('*')
+      }
+    }
+  }
   const promise = new Promise((resolve, reject) => {
-    rejectQuestion = () => {
-      reject(new Error('Question was rejected')) // no pending promises
-    }
-    rl.question(question, (answer) => {
-      resolve(answer)
+    rl.on('close', () => {
+      reject('Readline was closed.')
     })
-  })
-  const p = timeout ? promto(promise, timeout, `reloquent: ${question}`) : promise
-  rl.promise = p.then(
-    (res) => {
-      rl.close()
-      rejectQuestion()
-      return res
-    },
-    (err) => {
-      rl.close()
-      rejectQuestion()
-      throw err
-    }
-  )
+    rl.question(question, answer => resolve(answer))
+  }).catch(() => {})
+  const promtoPromise = timeout
+    ? promto(promise, timeout, `reloquent: ${question}`)
+    : promise
+  rl.promise = makePromise(promtoPromise, rl)
   return rl
 }
 
+const makePromise = async (promtoPromise, rl) => {
+  try {
+    return await promtoPromise
+  } finally {
+    rl.close()
+  }
+}
 
 module.exports = ask

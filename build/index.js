@@ -64,6 +64,7 @@ module.exports=reloquent
  * @prop {() => string|Promise.<string>} [getDefault] The function which will get the default value, possibly asynchronously.
  * @prop {(answer: string) => void} [validation] The validation function which should throw on error.
  * @prop {(answer: string) => string} [postProcess] The transformation function for the answer.
+ * @prop {boolean} [password=false] Hide the inputs behind `*` when typing the answer. Default `false`.
  *
  * @typedef {Object.<string, Question>} Questions A set of questions.
  */
