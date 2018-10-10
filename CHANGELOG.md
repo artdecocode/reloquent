@@ -1,3 +1,9 @@
+## 10 October 2018
+
+### 1.2.3
+
+- [fix] Don't resolve on close (accepts confirmation with ctrl-c)
+
 ## 8 October 2018
 
 ### 1.2.2
