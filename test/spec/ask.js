@@ -50,7 +50,7 @@ const T = {
     output.end()
     equal(answer, a)
     const pp = await p
-    equal(pp, '\u001b[1G\u001b[0JPassword: \u001b[11G*********')
+    equal(pp, '\u001b[1G\u001b[0JPassword: \u001b[11G********\r\n')
   },
 }
 
