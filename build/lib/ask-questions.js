@@ -1,4 +1,4 @@
-let ask = require('./ask'); if (ask && ask.__esModule) ask = ask.default;
+const ask = require('./ask');
 
 /**
  * Color foreground with grey

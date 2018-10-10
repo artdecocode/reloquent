@@ -33,20 +33,16 @@ let promto = require('promto'); if (promto && promto.__esModule) promto = promto
       }
     }
   }
-  const p = new Promise((resolve) => {
-    rl.question(question, answer => {
-      resolve(answer)
-    })
-    rl.once('close', () => resolve())
-  })
+  const p = new Promise(rl.question.bind(rl, question))
+
   const promise = timeout
     ? promto(p, timeout, `reloquent: ${question}`)
     : p
-  rl.promise = makePromise(promise, rl)
+  rl.promise = tryPromise(promise, rl)
   return rl
 }
 
-const makePromise = async (promise, rl) => {
+const tryPromise = async (promise, rl) => {
   try {
     const res = await promise
     return res

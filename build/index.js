@@ -1,4 +1,4 @@
-let askQuestions = require('./lib/ask-questions'); if (askQuestions && askQuestions.__esModule) askQuestions = askQuestions.default;
+const askQuestions = require('./lib/ask-questions');
 
 /**
  * Ask user questions via the CLI.

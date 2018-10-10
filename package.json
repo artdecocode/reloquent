@@ -40,7 +40,7 @@
   },
   "homepage": "https://github.com/artdecocode/reloquent#readme",
   "devDependencies": {
-    "alamode": "1.5.1",
+    "alamode": "1.6.0",
     "catchment": "3.1.1",
     "documentary": "1.20.1",
     "eslint-config-artdeco": "1.0.1",
