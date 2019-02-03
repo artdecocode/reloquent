@@ -1,3 +1,10 @@
+## 3 February 2019
+
+### 1.2.4
+
+- [package] Publish `src` module.
+- [package] Add [Tech Nation Visa Sucks](https://www.technation.sucks) footer.
+
 ## 10 October 2018
 
 ### 1.2.3
