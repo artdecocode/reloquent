@@ -6,8 +6,6 @@ User interaction is important in the modern day applications. `reloquent` is an 
 
 ## Copyright
 
-(c) [Art Deco][1] 2018
-
-[1]: https://artdeco.bz
+<Footer />
 
 %~ -1%

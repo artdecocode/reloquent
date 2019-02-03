@@ -291,12 +291,12 @@ If when provided with the following answers (leaving _Date_ as it is), the resul
 ```
 Title: hello
 Description: [A test default value] world
-Date: [2018-10-8 02:23:29] 
+Date: [2019-2-3 11:16:06] 
 
 Result: {
   "title": "hello",
   "description": "world",
-  "date": "2018-10-8 02:23:29"
+  "date": "2019-2-3 11:16:06"
 }
 ```
 
@@ -334,8 +334,26 @@ Result: true
 
 ## Copyright
 
-(c) [Art Deco][1] 2018
-
-[1]: https://artdeco.bz
+<table>
+  <tr>
+    <th>
+      <a href="https://artd.eco">
+        <img src="https://raw.githubusercontent.com/wrote/wrote/master/images/artdeco.png" alt="Art Deco" />
+      </a>
+    </th>
+    <th>
+      © <a href="https://artd.eco">Art Deco</a>  
+      2019
+    </th>
+    <th>
+      <a href="https://www.technation.sucks" title="Tech Nation Visa">
+        <img src="https://raw.githubusercontent.com/artdecoweb/www.technation.sucks/master/anim.gif" alt="Tech Nation Visa" />
+      </a>
+    </th>
+    <th>
+      <a href="https://www.technation.sucks">Tech Nation Visa Sucks</a>
+    </th>
+  </tr>
+</table>
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/-1.svg?sanitize=true"></a></p>

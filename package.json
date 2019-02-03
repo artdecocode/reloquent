@@ -2,7 +2,8 @@
   "name": "reloquent",
   "version": "1.2.3",
   "description": "Ask user configurable questions via read-line.",
-  "main": "build",
+  "main": "build/index.js",
+  "module": "src/index.js",
   "scripts": {
     "t": "zoroaster -a",
     "test": "yarn t test/spec test/mask",
@@ -19,7 +20,8 @@
     "lint": "eslint ."
   },
   "files": [
-    "build"
+    "build",
+    "src"
   ],
   "repository": {
     "type": "git",
@@ -31,7 +33,8 @@
     "questions",
     "stdin",
     "read",
-    "input"
+    "input",
+    "cli"
   ],
   "author": "Anton <anton@adc.sh>",
   "license": "MIT",
@@ -40,14 +43,14 @@
   },
   "homepage": "https://github.com/artdecocode/reloquent#readme",
   "devDependencies": {
-    "alamode": "1.6.0",
-    "catchment": "3.1.1",
-    "documentary": "1.20.1",
+    "alamode": "1.7.3",
+    "catchment": "3.2.2",
+    "documentary": "1.21.1",
     "eslint-config-artdeco": "1.0.1",
     "forkfeed": "1.0.0",
     "spawncommand": "2.1.0",
     "yarn-s": "1.1.0",
-    "zoroaster": "3.6.2"
+    "zoroaster": "3.6.6"
   },
   "dependencies": {
     "promto": "1.0.1"
