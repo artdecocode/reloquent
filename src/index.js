@@ -6,7 +6,7 @@ import askQuestions from './lib/ask-questions'
  * @param {number} [timeout] How long to wait before rejecting the promise. Waits forever by default.
  * @returns {!Object<string, string>} An object with answers.
  */
-async function reloquent(questions, timeout) {
+export default async function reloquent(questions, timeout) {
   const res = await askQuestions(questions, timeout)
   return res
 }
@@ -17,7 +17,7 @@ async function reloquent(questions, timeout) {
  * @param {number} [timeout] How long to wait before rejecting the promise. Waits forever by default.
  * @returns {!Promise<string>} An answer to the question.
  */
-async function askSingle(question, timeout) {
+export async function askSingle(question, timeout) {
   const { question: answer } = await askQuestions({ question }, timeout)
   return answer
 }
@@ -30,7 +30,7 @@ async function askSingle(question, timeout) {
  * @param {number} [options.timeout] How long to wait before rejecting the promise. Waits forever by default.
  * @returns {string} An answer to the question.
  */
-async function confirm(question, options = {}) {
+export async function confirm(question, options = {}) {
   const {
     defaultYes = true,
     timeout,
@@ -45,9 +45,6 @@ async function confirm(question, options = {}) {
   }, timeout)
   return answer == 'y'
 }
-
-export default reloquent
-export { askSingle, confirm }
 
 /* documentary types/confirm.xml */
 /**
