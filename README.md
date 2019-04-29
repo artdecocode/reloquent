@@ -291,12 +291,12 @@ If when provided with the following answers (leaving _Date_ as it is), the resul
 ```
 Title: hello
 Description: [A test default value] world
-Date: [2019-4-29 22:29:28] 
+Date: [2019-4-29 22:39:58] 
 
 Result: {
   "title": "hello",
   "description": "world",
-  "date": "2019-4-29 22:29:28"
+  "date": "2019-4-29 22:39:58"
 }
 ```
 

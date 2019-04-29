@@ -4,7 +4,7 @@ import promto from 'promto'
 /**
  * Ask user a question and wait for an answer.
  * @param {string} question Question to present to the user.
- * @param {{ password: boolean, timeout?: number }} options The options.
+ * @param {{ password: boolean, timeout: (number|undefined) }} options The options.
  */
 export default function ask(question, options = {}) {
   const {

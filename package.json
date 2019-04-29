@@ -19,7 +19,7 @@
     "example/questions.js": "yarn e example/questions.js",
     "lint": "eslint .",
     "externs": "typal externs.js -e",
-    "d1": "typal src -c"
+    "d1": "typal src/index.js -c"
   },
   "files": [
     "build",
