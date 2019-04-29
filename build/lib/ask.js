@@ -4,7 +4,7 @@ let promto = require('promto'); if (promto && promto.__esModule) promto = promto
 /**
  * Ask user a question and wait for an answer.
  * @param {string} question Question to present to the user.
- * @param {{ password: boolean, timeout: (number|undefined) }} options The options.
+ * @param {{ password: (boolean| undefined), timeout: (number|undefined), input: (stream.Readable|NodeJS.ReadStream|undefined), output: (stream.Writable|NodeJS.WriteStream|undefined) }} options The options.
  */
                function ask(question, options = {}) {
   const {
@@ -14,22 +14,32 @@ let promto = require('promto'); if (promto && promto.__esModule) promto = promto
     input = process.stdin,
     ...rest
   } = options
-  const rl = createInterface({
+  const rl = createInterface(/** @type {!readline.ReadLineOptions} */ ({
     input,
     output,
     ...rest,
-  })
+  }))
   if (password) {
-    rl._writeToOutput = (s) => {
+    /**
+     * Undocumented API.
+     * @type {!NodeJS.WriteStream}
+     * @suppress {checkTypes}
+     */
+    const o = rl['output']
+    /**
+     * Undocumented API.
+     * @suppress {checkTypes}
+     */
+    rl['_writeToOutput'] = (s) => {
       if (['\r\n', '\n', '\r'].includes(s))
-        return rl.output.write(s)
+        return o.write(s)
 
       const v = s.split(question)
       if (v.length == '2') {
-        rl.output.write(question)
-        rl.output.write('*'.repeat(v[1].length))
+        o.write(question)
+        o.write('*'.repeat(v[1].length))
       } else {
-        rl.output.write('*')
+        o.write('*')
       }
     }
   }
@@ -38,7 +48,10 @@ let promto = require('promto'); if (promto && promto.__esModule) promto = promto
   const promise = timeout
     ? promto(p, timeout, `reloquent: ${question}`)
     : p
-  rl.promise = tryPromise(promise, rl)
+  /**
+   * @suppress {checkTypes}
+   */
+  rl['promise'] = tryPromise(promise, rl)
   return rl
 }
 
@@ -50,5 +63,18 @@ const tryPromise = async (promise, rl) => {
     rl.close()
   }
 }
+
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('stream').Readable} stream.Readable
+ */
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('stream').Writable} stream.Writable
+ */
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('readline').ReadLineOptions} readline.ReadLineOptions
+ */
 
 module.exports = ask

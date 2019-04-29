@@ -6,7 +6,7 @@
     <prop opt string name="defaultValue">
       The default answer to the question.
     </prop>
-    <prop opt name="getDefault" type="function(): string|Promise<string>">
+    <prop opt name="getDefault" type="function(): (string|Promise<string>)">
       The function which will get the default value, possibly asynchronously.
     </prop>
     <prop opt name="validation" type="function(string): void">
@@ -19,5 +19,5 @@
       Hide the inputs behind `*` when typing the answer.
     </prop>
   </type>
-  <type name="Questions" type="Object<string, _reloquent.Question>" desc="A set of questions." />
+  <type name="Questions" type="Object<string, string|_reloquent.Question>" desc="A set of questions." />
 </types>

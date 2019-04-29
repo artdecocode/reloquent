@@ -28,7 +28,7 @@ export async function askSingle(question, timeout) {
  * @param {_reloquent.ConfirmOptions} [options] Options for the confirmation question.
  * @param {boolean} [options.defaultYes=true] Whether the default value is _yes_. Default `true`.
  * @param {number} [options.timeout] How long to wait before rejecting the promise. Waits forever by default.
- * @returns {string} An answer to the question.
+ * @returns {!Promise<boolean>} An answer to the question.
  */
 export async function confirm(question, options = {}) {
   const {
@@ -68,7 +68,7 @@ export async function confirm(question, options = {}) {
  * @typedef {Object} _reloquent.Question A question.
  * @prop {string} text The text to show to the user.
  * @prop {string} [defaultValue] The default answer to the question.
- * @prop {function(): string|Promise<string>} [getDefault] The function which will get the default value, possibly asynchronously.
+ * @prop {function(): (string|Promise<string>)} [getDefault] The function which will get the default value, possibly asynchronously.
  * @prop {function(string): void} [validation] The validation function which should throw on error.
  * @prop {function(string): string} [postProcess] The transformation function for the answer.
  * @prop {boolean} [password=false] Hide the inputs behind `*` when typing the answer. Default `false`.
@@ -79,5 +79,5 @@ export async function confirm(question, options = {}) {
  */
 /**
  * @suppress {nonStandardJsDocs}
- * @typedef {Object<string, _reloquent.Question>} _reloquent.Questions A set of questions.
+ * @typedef {Object<string, string|_reloquent.Question>} _reloquent.Questions A set of questions.
  */

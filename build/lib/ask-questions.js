@@ -18,15 +18,16 @@ const ask = require('./ask');
   if (typeof questions != 'object')
     throw new Error('Please give an object with questions')
 
-  const keys = Object.keys(questions)
+  const keys = Object.keys(/** @type {!Object} */ (questions))
   const res = await keys.reduce(async (acc, key) => {
     const accRes = await acc
 
     const value = questions[key]
+    /** @type {_reloquent.Question} */
     let question
     switch (typeof value) {
     case 'object':
-      question = { ...value }
+      question = /** @type {_reloquent.Question} */ ({ ...value })
       break
     case 'string':
       question = { text: value }
@@ -80,6 +81,10 @@ const ask = require('./ask');
 /**
  * @suppress {nonStandardJsDocs}
  * @typedef {import('..').Questions} _reloquent.Questions
+ */
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('..').Question} _reloquent.Question
  */
 
 module.exports = askQuestions
