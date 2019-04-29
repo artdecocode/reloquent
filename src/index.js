@@ -25,9 +25,9 @@ async function askSingle(question, timeout) {
 /**
  * Ask a yes/no question.
  * @param {string} question The question, such as "Add default options", or "Continue to delete?".
- * @param {!Object} [options] The options.
+ * @param {_reloquent.ConfirmOptions} [options] Options for the confirmation question.
+ * @param {boolean} [options.defaultYes=true] Whether the default value is _yes_. Default `true`.
  * @param {number} [options.timeout] How long to wait before rejecting the promise. Waits forever by default.
- * @param {boolean} [options.defaultYes=true]
  * @returns {string} An answer to the question.
  */
 async function confirm(question, options = {}) {
