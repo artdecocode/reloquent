@@ -1,4 +1,4 @@
-<types>
+<types namespace="_reloquent">
   <type name="ConfirmOptions"
     desc="Options for the confirmation question.">
     <prop boolean name="defaultYes" default="true">

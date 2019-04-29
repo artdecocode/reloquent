@@ -9,8 +9,8 @@ Ask a yes or no question.
 
 %TYPEDEF types/confirm.xml%
 
-%EXAMPLE: example/confirm.js, ../src => reloquent%
+%EXAMPLE: example/confirm, ../src => reloquent%
 
-%FORK example example/confirm%
+%FORK example/confirm%
 
 %~%

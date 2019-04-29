@@ -101,7 +101,7 @@ const q = {
 
 When the `password` property is set to true, the answer will be hidden behind the `*` symbols.
 
-%EXAMPLE: example/password/fork.js, ../../src => reloquent%
-%FORK example example/password%
+%EXAMPLE: example/password/fork, ../../src => reloquent%
+%FORK example/password%
 
 %~%

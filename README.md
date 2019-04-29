@@ -20,7 +20,7 @@ yarn add -E reloquent
 - [`async askSingle(question: Question, timeout?: number): string`](#async-asksinglequestion-questiontimeout-number-string)
 - [`async ask(questions: <string, Question>, timeout?: number): object`](#async-askquestions-string-questiontimeout-number-object)
 - [`async confirm(question: string, options: confirmOptions): boolean`](#async-confirmquestion-stringoptions-confirmoptions-boolean)
-  * [`ConfirmOptions`](#type-confirmoptions)
+  * [`_reloquent.ConfirmOptions`](#type-_reloquentconfirmoptions)
 - [Copyright](#copyright)
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/0.svg?sanitize=true"></a></p>
@@ -291,12 +291,12 @@ If when provided with the following answers (leaving _Date_ as it is), the resul
 ```
 Title: hello
 Description: [A test default value] world
-Date: [2019-2-3 11:16:06] 
+Date: [2019-4-29 22:29:28] 
 
 Result: {
   "title": "hello",
   "description": "world",
-  "date": "2019-2-3 11:16:06"
+  "date": "2019-4-29 22:29:28"
 }
 ```
 
@@ -306,12 +306,12 @@ Result: {
 
 Ask a yes or no question.
 
-__<a name="type-confirmoptions">`ConfirmOptions`</a>__: Options for the confirmation question.
+__<a name="type-_reloquentconfirmoptions">`_reloquent.ConfirmOptions`</a>__: Options for the confirmation question.
 
-|    Name    |   Type    |                               Description                                | Default |
-| ---------- | --------- | ------------------------------------------------------------------------ | ------- |
-| defaultYes | _boolean_ | Whether the default value is _yes_.                                      | `true`  |
-| timeout    | _number_  | How long to wait before rejecting the promise. Waits forever by default. | -       |
+|    Name    |       Type       |                               Description                                | Default |
+| ---------- | ---------------- | ------------------------------------------------------------------------ | ------- |
+| defaultYes | <em>boolean</em> | Whether the default value is _yes_.                                      | `true`  |
+| timeout    | <em>number</em>  | How long to wait before rejecting the promise. Waits forever by default. | -       |
 
 ```js
 import { confirm } from 'reloquent'
@@ -341,18 +341,14 @@ Result: true
         <img src="https://raw.githubusercontent.com/wrote/wrote/master/images/artdeco.png" alt="Art Deco" />
       </a>
     </th>
-    <th>
-      © <a href="https://artd.eco">Art Deco</a>  
-      2019
-    </th>
+    <th>© <a href="https://artd.eco">Art Deco</a>   2019</th>
     <th>
       <a href="https://www.technation.sucks" title="Tech Nation Visa">
-        <img src="https://raw.githubusercontent.com/artdecoweb/www.technation.sucks/master/anim.gif" alt="Tech Nation Visa" />
+        <img src="https://raw.githubusercontent.com/artdecoweb/www.technation.sucks/master/anim.gif"
+          alt="Tech Nation Visa" />
       </a>
     </th>
-    <th>
-      <a href="https://www.technation.sucks">Tech Nation Visa Sucks</a>
-    </th>
+    <th><a href="https://www.technation.sucks">Tech Nation Visa Sucks</a></th>
   </tr>
 </table>
 

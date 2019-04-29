@@ -7,7 +7,7 @@
 
 Ask a question as a string and wait for the answer. If a timeout is passed, the promise will expire after the specified number of milliseconds if the answer was not given.
 
-%EXAMPLE: example/string.js, ../src => reloquent%
+%EXAMPLE: example/string, ../src => reloquent%
 
 ```fs
 What brought you her: I guess Art is the cause.

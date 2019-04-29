@@ -10,19 +10,23 @@
     "mask": "yarn t test/mask",
     "test-build": "ALAMODE_ENV=test-build yarn test",
     "b": "alamode src -o build -s",
-    "d": "NODE_DEBUG=doc doc src/index.js -g",
-    "doc": "NODE_DEBUG=doc doc documentary -o README.md",
+    "d": "yarn-s d1 externs",
+    "doc": "NODE_DEBUG=doc doc -o README.md",
     "build": "yarn-s d b doc",
-    "e": "node example",
+    "e": "alanode",
     "example/single.js": "yarn e example/single.js",
     "example/string.js": "yarn e example/string.js",
     "example/questions.js": "yarn e example/questions.js",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "externs": "typal externs.js -e",
+    "d1": "typal src -c"
   },
   "files": [
     "build",
-    "src"
+    "src",
+    "externs.js"
   ],
+  "externs": "externs.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/artdecocode/reloquent.git"
@@ -43,16 +47,16 @@
   },
   "homepage": "https://github.com/artdecocode/reloquent#readme",
   "devDependencies": {
-    "alamode": "1.7.3",
-    "catchment": "3.2.2",
-    "documentary": "1.21.1",
+    "alamode": "2.0.0",
+    "catchment": "3.3.0",
+    "documentary": "1.26.2",
     "eslint-config-artdeco": "1.0.1",
-    "forkfeed": "1.0.0",
-    "spawncommand": "2.1.0",
+    "forkfeed": "1.1.1",
+    "spawncommand": "2.2.0",
     "yarn-s": "1.1.0",
-    "zoroaster": "3.6.6"
+    "zoroaster": "3.13.0"
   },
   "dependencies": {
-    "promto": "1.0.1"
+    "promto": "1.1.1"
   }
 }

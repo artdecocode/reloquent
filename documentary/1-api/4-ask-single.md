@@ -7,7 +7,7 @@
 
 Ask a question which is passed as an object of the [`Question`](#question-type) type, and return a string.
 
-%EXAMPLE: example/single.js, ../src => reloquent%
+%EXAMPLE: example/single, ../src => reloquent%
 
 ```fs
 Do you wish me to stay so long? [I desire it much]
