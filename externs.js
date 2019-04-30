@@ -10,11 +10,41 @@ _reloquent.ConfirmOptions
 /* typal types/index.xml */
 /**
  * A question.
- * @typedef {{ text: string, defaultValue: (string|undefined), getDefault: (function(): (string|Promise<string>)|undefined), validation: (function(string): void|undefined), postProcess: (function(string): string|undefined), password: (boolean|undefined) }}
+ * @record
  */
 _reloquent.Question
 /**
+ * The text to show to the user.
+ * @type {string}
+ */
+_reloquent.Question.prototype.text
+/**
+ * The default answer to the question.
+ * @type {(string|undefined)}
+ */
+_reloquent.Question.prototype.defaultValue
+/**
+ * The function which will get the default value, possibly asynchronously.
+ * @type {(function(): (string|!Promise<string>)|undefined)}
+ */
+_reloquent.Question.prototype.getDefault
+/**
+ * The validation function which should throw on error.
+ * @type {(function(string): void|undefined)}
+ */
+_reloquent.Question.prototype.validation
+/**
+ * The transformation function for the answer.
+ * @type {(function(string): (string|!Promise<string>)|undefined)}
+ */
+_reloquent.Question.prototype.postProcess
+/**
+ * Hide the inputs behind `*` when typing the answer.
+ * @type {(boolean|undefined)}
+ */
+_reloquent.Question.prototype.password
+/**
  * A set of questions.
- * @typedef {Object<string, string|_reloquent.Question>}
+ * @typedef {!Object<string, string|!_reloquent.Question>}
  */
 _reloquent.Questions
