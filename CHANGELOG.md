@@ -1,3 +1,9 @@
+## 1 May 2019
+
+### [1.3.1](https://github.com/artdecocode/reloquent/compare/v1.3.0...v1.3.1)
+
+- [fix] Quote the `promise` property.
+
 ## 30 April 2019
 
 ### [1.3.0](https://github.com/artdecocode/reloquent/compare/v1.2.4...v1.3.0)

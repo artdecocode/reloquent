@@ -49,9 +49,9 @@
   },
   "homepage": "https://github.com/artdecocode/reloquent#readme",
   "devDependencies": {
-    "alamode": "^2.0.0",
+    "alamode": "^2.1.0",
     "catchment": "^3.3.0",
-    "documentary": "^1.26.2",
+    "documentary": "^1.26.5",
     "eslint-config-artdeco": "1.0.1",
     "forkfeed": "^1.1.1",
     "spawncommand": "^2.2.0",
@@ -59,6 +59,6 @@
     "zoroaster": "^3.13.0"
   },
   "dependencies": {
-    "promto": "^1.1.1"
+    "promto": "^1.1.2"
   }
 }

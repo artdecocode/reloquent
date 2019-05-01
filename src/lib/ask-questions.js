@@ -55,7 +55,7 @@ export default async function askQuestions(questions, timeout) {
     }
     let gtd = gotDefaultValue || ''
     const text = `${question.text}${dv ? `[${dv}] ` : ''}${gtd ? `[${gtd}] ` : ''}`
-    const { promise } = ask(text, {
+    const { 'promise': promise } = ask(text, {
       timeout,
       password: question.password,
     })
