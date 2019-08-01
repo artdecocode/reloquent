@@ -1,3 +1,9 @@
+## 1 August 2019
+
+### [1.3.2](https://github.com/artdecocode/reloquent/compare/v1.3.1...v1.3.2)
+
+- [package] Publish the types directory.
+
 ## 1 May 2019
 
 ### [1.3.1](https://github.com/artdecocode/reloquent/compare/v1.3.0...v1.3.1)
