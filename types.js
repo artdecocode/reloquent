@@ -12,10 +12,10 @@ export {}
 
 /* typal types/index.xml noSuppress */
 /**
- * @typedef {_reloquent.Question} Question A question.
+ * @typedef {_reloquent.Question} Question `＠record` A question.
  */
 /**
- * @typedef {Object} _reloquent.Question A question.
+ * @typedef {Object} _reloquent.Question `＠record` A question.
  * @prop {string} text The text to show to the user.
  * @prop {string} [defaultValue] The default answer to the question.
  * @prop {function(): (string|!Promise<string>)} [getDefault] The function which will get the default value, possibly asynchronously.

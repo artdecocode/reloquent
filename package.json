@@ -18,17 +18,17 @@
     "example/questions.js": "yarn e example/questions.js",
     "lint": "eslint .",
     "d": "yarn-s d1 externs types",
-    "externs": "typal externs.js -e",
+    "externs": "typal types/externs.js -e",
     "types": "typal types.js -c",
     "d1": "typal src/index.js -c -t types/index.xml,types/confirm.xml"
   },
   "files": [
     "build",
     "src",
-    "externs.js",
-    "types.js"
+    "types.js",
+    "types"
   ],
-  "externs": "externs.js",
+  "externs": "types/externs.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/artdecocode/reloquent.git"
@@ -49,14 +49,14 @@
   },
   "homepage": "https://github.com/artdecocode/reloquent#readme",
   "devDependencies": {
-    "alamode": "^2.1.0",
+    "alamode": "^2.3.6",
     "catchment": "^3.3.0",
-    "documentary": "^1.26.5",
+    "documentary": "^1.29.0",
     "eslint-config-artdeco": "1.0.1",
     "forkfeed": "^1.1.1",
     "spawncommand": "^2.2.0",
     "yarn-s": "1.1.0",
-    "zoroaster": "^3.13.0"
+    "zoroaster": "^4.1.1-alpha"
   },
   "dependencies": {
     "promto": "^1.1.2"

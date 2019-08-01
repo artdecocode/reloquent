@@ -20,27 +20,27 @@ _reloquent.Question
 _reloquent.Question.prototype.text
 /**
  * The default answer to the question.
- * @type {(string|undefined)}
+ * @type {string|undefined}
  */
 _reloquent.Question.prototype.defaultValue
 /**
  * The function which will get the default value, possibly asynchronously.
- * @type {(function(): (string|!Promise<string>)|undefined)}
+ * @type {(function(): (string|!Promise<string>))|undefined}
  */
-_reloquent.Question.prototype.getDefault
+_reloquent.Question.prototype.getDefault = function() {}
 /**
  * The validation function which should throw on error.
- * @type {(function(string): void|undefined)}
+ * @type {(function(string): void)|undefined}
  */
-_reloquent.Question.prototype.validation
+_reloquent.Question.prototype.validation = function() {}
 /**
  * The transformation function for the answer.
- * @type {(function(string): (string|!Promise<string>)|undefined)}
+ * @type {(function(string): (string|!Promise<string>))|undefined}
  */
-_reloquent.Question.prototype.postProcess
+_reloquent.Question.prototype.postProcess = function() {}
 /**
  * Hide the inputs behind `*` when typing the answer.
- * @type {(boolean|undefined)}
+ * @type {boolean|undefined}
  */
 _reloquent.Question.prototype.password
 /**
