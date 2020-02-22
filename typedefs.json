@@ -21,5 +21,9 @@
   "_reloquent.askQuestions": {
     "link": "https://github.com/artdecocode/reloquent#async-askquestionsquestions-questionstimeout-number-objectstring-string",
     "description": "Ask user a series of questions via CLI and transform them into answers.\r\n    Returns an object with keys as questions' texts and values as answers."
+  },
+  "_reloquent.Questions": {
+    "link": "https://github.com/artdecocode/reloquent#type-questions",
+    "description": "A set of questions."
   }
 }
