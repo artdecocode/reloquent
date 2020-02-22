@@ -1,0 +1,21 @@
+{
+  "_reloquent.askSingle": {
+    "link": "https://github.com/artdecocode/reloquent#async-asksinglequestion-stringquestiontimeout-number-string",
+    "description": "Ask user a question via the CLI. Returns the answer to the question. \r\n    If a timeout is passed, the promise will expire after the specified \r\n    number of milliseconds if the answer was not given."
+  },
+  "_reloquent.confirm": {
+    "link": "https://github.com/artdecocode/reloquent#async-confirmquestion-stringquestionoptions-confirmoptions-boolean",
+    "description": "Ask a yes/no question. Returns `true` when answer was `y` and `false` otherwise."
+  },
+  "_reloquent.ConfirmOptions": {
+    "link": "https://github.com/artdecocode/reloquent#type-confirmoptions",
+    "description": "Options for the confirmation question."
+  },
+  "undefinedask": {
+    "link": "https://github.com/artdecocode/reloquent#async-askquestions-string-questiontimeout-number-object"
+  },
+  "_reloquent.Question": {
+    "link": "https://github.com/artdecocode/reloquent#type-question",
+    "description": "A question."
+  }
+}

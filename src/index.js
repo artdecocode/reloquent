@@ -29,13 +29,13 @@ export async function confirm(question, options = {}) {
   const Q = typeof question == 'string' ? {
     text: question,
   } : question
-  const { text } = question
+  const { text } = Q
   const hasQ = text.endsWith('?')
   const realText = `${hasQ ? text.replace(/\?$/, '') : text} (y/n)${hasQ ? '?' : ''}`
   const { question: answer } = await askQuestions({
     question: {
       defaultValue: defaultYes ? 'y' : 'n',
-      ...question,
+      ...Q,
       text: realText,
     },
   }, timeout)

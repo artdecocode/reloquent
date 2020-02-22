@@ -1,13 +1,17 @@
 # reloquent
 
-[![npm version](https://badge.fury.io/js/reloquent.svg)](https://npmjs.org/package/reloquent)
+[![npm version](https://badge.fury.io/js/reloquent.svg)](https://www.npmjs.com/package/reloquent)
 
-`reloquent` allows to ask users a question, a confirmation (y/n), or a series of questions via the read-line interface.
+_Reloquent_ allows to ask users a question, a confirmation (y/n), or a series of questions via the read-line interface. 
 
 ```sh
-yarn add -E reloquent
+yarn add reloquent
+npm i reloquent
 ```
 
+## Table Of Contents
+
+- [Table Of Contents](#table-of-contents)
 - [API](#api)
 - [`Question` Type](#question-type)
   * [<strong><code>text*</code></strong>](#text)
@@ -16,14 +20,16 @@ yarn add -E reloquent
   * [<code>defaultValue</code>](#defaultvalue)
   * [<code>getDefault</code>](#getdefault)
   * [<code>password</code>](#password)
-- [`async askSingle(question: string, timeout?: number): string`](#async-asksinglequestion-stringtimeout-number-string)
-- [`async askSingle(question: Question, timeout?: number): string`](#async-asksinglequestion-questiontimeout-number-string)
+  * [<code>Question</code>](#type-question)
+- [`async askSingle(question: (string|!Question), timeout=: number): string`](#async-asksinglequestion-stringquestiontimeout-number-string)
 - [`async ask(questions: <string, Question>, timeout?: number): object`](#async-askquestions-string-questiontimeout-number-object)
-- [`async confirm(question: string, options: confirmOptions): boolean`](#async-confirmquestion-stringoptions-confirmoptions-boolean)
-  * [`_reloquent.ConfirmOptions`](#type-_reloquentconfirmoptions)
+- [`async confirm(question: (string|!Question), options=: !ConfirmOptions): boolean`](#async-confirmquestion-stringquestionoptions-confirmoptions-boolean)
+  * [`ConfirmOptions`](#type-confirmoptions)
 - [Copyright](#copyright)
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/0.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/0.svg?sanitize=true">
+</a></p>
 
 
 
@@ -42,7 +48,9 @@ Their respective methods can be accessed via the `import` statement:
 import ask, { askSingle, confirm } from 'reloquent'
 ```
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/1.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/1.svg?sanitize=true">
+</a></p>
 
 ## `Question` Type
 
@@ -182,14 +190,35 @@ const Password = async () => {
 }
 ```
 ```
-Please enter the password: ********
+
 ```
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/2.svg?sanitize=true"></a></p>
+<details>
+ <summary><strong><a name="type-question"><code>Question</code></a> extends <a href="#type-readlinereadlineoptions"><code>readline.ReadLineOptions</code></a></strong>: A question.</summary>
 
-## `async askSingle(`<br/>&nbsp;&nbsp;`question: string,`<br/>&nbsp;&nbsp;`timeout?: number,`<br/>`): string`
+|     Name     |                              Type                               |                               Description                               | Default |
+| ------------ | --------------------------------------------------------------- | ----------------------------------------------------------------------- | ------- |
+| __text*__    | <em>string</em>                                                 | The text to show to the user.                                           | -       |
+| defaultValue | <em>string</em>                                                 | The default answer to the question.                                     | -       |
+| password     | <em>boolean</em>                                                | Hide the inputs behind `*` when typing the answer.                      | `false` |
+| getDefault   | <em>() => (string \| !Promise&lt;string&gt;)</em>               | The function which will get the default value, possibly asynchronously. | -       |
+| validation   | <em>(answer: string) => void</em>                               | The validation function which should throw on error.                    | -       |
+| postProcess  | <em>(answer: string) => (string \| !Promise&lt;string&gt;)</em> | The transformation function for the answer.                             | -       |
+</details>
 
-Ask a question as a string and wait for the answer. If a timeout is passed, the promise will expire after the specified number of milliseconds if the answer was not given.
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/2.svg?sanitize=true">
+</a></p>
+
+## <code>async <ins>askSingle</ins>(</code><sub><br/>&nbsp;&nbsp;`question: (string|!Question),`<br/>&nbsp;&nbsp;`timeout=: number,`<br/></sub><code>): <i>string</i></code>
+Ask user a question via the CLI. Returns the answer to the question. 
+    If a timeout is passed, the promise will expire after the specified 
+    number of milliseconds if the answer was not given.
+
+ - <kbd><strong>question*</strong></kbd> <em><code>(string \| <a href="#type-question" title="A question.">!Question</a>)</code></em>: The question to present to the user.
+ - <kbd>timeout</kbd> <em>`number`</em> (optional): How long to wait before rejecting the promise. Waits forever by default.
+
+Questions can be asked as a simple string.
 
 ```js
 import { askSingle } from 'reloquent'
@@ -214,11 +243,7 @@ What brought you her: I guess Art is the cause.
 You've answered: I guess Art is the cause.
 ```
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true"></a></p>
-
-## `async askSingle(`<br/>&nbsp;&nbsp;`question: Question,`<br/>&nbsp;&nbsp;`timeout?: number,`<br/>`): string`
-
-Ask a question which is passed as an object of the [`Question`](#question-type) type, and return a string.
+Alternatively, _Reloquent_ can ask a question which is passed as an object of the <a href="#type-question" title="A question.">`Question`</a> type, and return a string.
 
 ```js
 import { askSingle } from 'reloquent'
@@ -251,9 +276,11 @@ Do you wish me to stay so long? [I desire it much]
 I desire it much!
 ```
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/4.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/3.svg?sanitize=true">
+</a></p>
 
-## `async ask(`<br/>&nbsp;&nbsp;`questions: <string, Question>,`<br/>&nbsp;&nbsp;`timeout?: number,`<br/>`): object`
+## <code>async <ins>ask</ins>(</code><sub><br/>&nbsp;&nbsp;`questions: <string, Question>,`<br/>&nbsp;&nbsp;`timeout?: number,`<br/></sub><code>): <i>object</i></code>
 
 Ask a series of questions and transform them into answers.
 
@@ -291,22 +318,28 @@ If when provided with the following answers (leaving _Date_ as it is), the resul
 ```
 Title: hello
 Description: [A test default value] world
-Date: [2019-5-1 19:57:40] 
+Date: [2/22/2020, 20:01:32] 
 
 Result: {
   "title": "hello",
   "description": "world",
-  "date": "2019-5-1 19:57:40"
+  "date": "2/22/2020, 20:01:32"
 }
 ```
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/5.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/4.svg?sanitize=true">
+</a></p>
 
-## `async confirm(`<br/>&nbsp;&nbsp;`question: string,`<br/>&nbsp;&nbsp;`options: confirmOptions,`<br/>`): boolean`
+## <code>async <ins>confirm</ins>(</code><sub><br/>&nbsp;&nbsp;`question: (string|!Question),`<br/>&nbsp;&nbsp;`options=: !ConfirmOptions,`<br/></sub><code>): <i>boolean</i></code>
+Ask a yes/no question. Returns `true` when answer was `y` and `false` otherwise.
 
-Ask a yes or no question.
+ - <kbd><strong>question*</strong></kbd> <em><code>(string \| <a href="#type-question" title="A question.">!Question</a>)</code></em>: The question, such as "Add default options", or "Continue to delete?".
+      The question mark can added automatically.
+ - <kbd>options</kbd> <em><code><a href="#type-confirmoptions" title="Options for the confirmation question.">!ConfirmOptions</a></code></em> (optional): Options for the confirmation question.
 
-__<a name="type-_reloquentconfirmoptions">`_reloquent.ConfirmOptions`</a>__: Options for the confirmation question.
+__<a name="type-confirmoptions">`ConfirmOptions`</a>__: Options for the confirmation question.
+
 
 |    Name    |       Type       |                               Description                                | Default |
 | ---------- | ---------------- | ------------------------------------------------------------------------ | ------- |
@@ -330,26 +363,25 @@ Do you wish to continue (y/n): [n] y
 Result: true
 ```
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/6.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/5.svg?sanitize=true">
+</a></p>
+
 
 ## Copyright
 
 <table>
   <tr>
     <th>
-      <a href="https://artd.eco">
-        <img src="https://raw.githubusercontent.com/wrote/wrote/master/images/artdeco.png" alt="Art Deco" />
+      <a href="https://www.artd.eco">
+        <img width="100" src="https://raw.githubusercontent.com/wrote/wrote/master/images/artdeco.png"
+          alt="Art Deco">
       </a>
     </th>
-    <th>© <a href="https://artd.eco">Art Deco</a>   2019</th>
-    <th>
-      <a href="https://www.technation.sucks" title="Tech Nation Visa">
-        <img src="https://raw.githubusercontent.com/artdecoweb/www.technation.sucks/master/anim.gif"
-          alt="Tech Nation Visa" />
-      </a>
-    </th>
-    <th><a href="https://www.technation.sucks">Tech Nation Visa Sucks</a></th>
+    <th>© <a href="https://www.artd.eco">Art Deco™</a>   2020</th>
   </tr>
 </table>
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/-1.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/-1.svg?sanitize=true">
+</a></p>

@@ -11,7 +11,7 @@
     "test-build": "yarn test -e test-build",
     "test-compile": "yarn test -e test-compile",
     "b": "alamode src -o build -s",
-    "doc": "doc -o README.md -d -a",
+    "doc": "doc -o README.md -d -a -n _reloquent",
     "build": "yarn-s d b doc",
     "lib": "depack src/depack -o compile/reloquent.js -a -c -p --source_map_include_content",
     "e": "alanode",
@@ -33,6 +33,7 @@
     "type": "git",
     "url": "git://github.com/artdecocode/reloquent.git"
   },
+  "typedefs": "typedefs.json",
   "keywords": [
     "readline",
     "ask",

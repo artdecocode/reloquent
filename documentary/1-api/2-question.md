@@ -104,4 +104,6 @@ When the `password` property is set to true, the answer will be hidden behind th
 %EXAMPLE: example/password/fork, ../../src => reloquent%
 %FORK example/password%
 
+<typedef name="Question" details="Question">types/index.xml</typedef>
+
 %~%

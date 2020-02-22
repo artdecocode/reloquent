@@ -1,5 +1,5 @@
 <types ns="_reloquent">
-  <method name="askSingle" async return="string">
+  <method async name="askSingle" return="string">
     <arg type="(string|!_reloquent.Question)" name="question">
       The question to present to the user.
     </arg>
@@ -10,10 +10,10 @@
     If a timeout is passed, the promise will expire after the specified 
     number of milliseconds if the answer was not given.
   </method>
-  <method name="confirm" async return="boolean">
+  <method async name="confirm" return="boolean">
     <arg type="(string|!_reloquent.Question)" name="question">
        The question, such as "Add default options", or "Continue to delete?".
-      The question mask can added automatically.
+      The question mark can added automatically.
     </arg>
     <arg type="!_reloquent.ConfirmOptions" name="options" opt>
       Options for the confirmation question.

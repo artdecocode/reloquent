@@ -1,13 +1,6 @@
-```## async confirm => boolean
-[
-  ["question", "string"],
-  ["options", "confirmOptions"]
-]
-```
+<typedef name="confirm">types/api.xml</typedef>
 
-Ask a yes or no question.
-
-%TYPEDEF types/confirm.xml%
+<typedef>types/confirm.xml</typedef>
 
 %EXAMPLE: example/confirm, ../src => reloquent%
 
