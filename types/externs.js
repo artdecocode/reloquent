@@ -64,6 +64,12 @@ _reloquent.Questions
  */
 _reloquent.askSingle
 /**
+ * Ask user a series of questions via CLI and transform them into answers.
+    Returns an object with keys as questions' texts and values as answers.
+ * @typedef {function(!_reloquent.Questions,number=): !Promise<!Object<string, string>>}
+ */
+_reloquent.askQuestions
+/**
  * Ask a yes/no question. Returns `true` when answer was `y` and `false` otherwise.
  * @typedef {function((string|!_reloquent.Question),!_reloquent.ConfirmOptions=): !Promise<boolean>}
  */

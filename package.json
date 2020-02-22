@@ -58,9 +58,7 @@
     "forkfeed": "^1.1.1",
     "spawncommand": "^2.2.0",
     "yarn-s": "1.2.3",
-    "zoroaster": "^4.3.0"
-  },
-  "dependencies": {
+    "zoroaster": "^4.3.0",
     "promto": "^1.2.0"
   }
 }

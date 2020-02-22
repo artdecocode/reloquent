@@ -10,6 +10,18 @@
     If a timeout is passed, the promise will expire after the specified 
     number of milliseconds if the answer was not given.
   </method>
+
+  <method async name="askQuestions" return="!Object<string, string>">
+    <arg type="!_reloquent.Questions" name="questions">
+      A set of questions.
+    </arg>
+    <arg type="number" name="timeout" opt>
+      How long to wait before rejecting the promise. Waits forever by default.
+    </arg>
+    Ask user a series of questions via CLI and transform them into answers.
+    Returns an object with keys as questions' texts and values as answers.
+  </method>
+
   <method async name="confirm" return="boolean">
     <arg type="(string|!_reloquent.Question)" name="question">
        The question, such as "Add default options", or "Continue to delete?".

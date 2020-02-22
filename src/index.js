@@ -1,9 +1,7 @@
 import askQuestions from './lib/ask-questions'
 
 /**
- * Ask user questions via the CLI. Returns an object with keys as questions' texts and values as answers.
- * @param {_reloquent.Questions} questions A set of questions.
- * @param {number} [timeout] How long to wait before rejecting the promise. Waits forever by default.
+ * @type {_reloquent.askQuestions}
  */
 export default async function reloquent(questions, timeout) {
   const res = await askQuestions(questions, timeout)
@@ -61,4 +59,8 @@ export async function confirm(question, options = {}) {
 /**
  * @suppress {nonStandardJsDocs}
  * @typedef {import('../types').confirm} _reloquent.confirm
+ */
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('../types').askQuestions} _reloquent.askQuestions
  */

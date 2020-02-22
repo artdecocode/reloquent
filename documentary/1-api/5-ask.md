@@ -1,11 +1,4 @@
-```## async ask => object
-[
-  ["questions", "<string, Question>"],
-  ["timeout?", "number"]
-]
-```
-
-Ask a series of questions and transform them into answers.
+<typedef name="askQuestions">types/api.xml</typedef>
 
 %EXAMPLE: example/questions, ../src => reloquent%
 
