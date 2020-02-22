@@ -190,7 +190,7 @@ const Password = async () => {
 }
 ```
 ```
-
+Please enter the password: ********
 ```
 
 <details>
