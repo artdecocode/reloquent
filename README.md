@@ -23,6 +23,7 @@ npm i reloquent
   * [<code>Question</code>](#type-question)
 - [`async askSingle(question: (string|!Question), timeout=: number): string`](#async-asksinglequestion-stringquestiontimeout-number-string)
 - [`async askQuestions(questions: !Questions, timeout=: number): !Object<string, string>`](#async-askquestionsquestions-questionstimeout-number-objectstring-string)
+  * [`Questions`](#type-questions)
 - [`async confirm(question: (string|!Question), options=: !ConfirmOptions): boolean`](#async-confirmquestion-stringquestionoptions-confirmoptions-boolean)
   * [`ConfirmOptions`](#type-confirmoptions)
 - [Copyright](#copyright)
@@ -284,8 +285,10 @@ I desire it much!
 Ask user a series of questions via CLI and transform them into answers.
     Returns an object with keys as questions' texts and values as answers.
 
- - <kbd><strong>questions*</strong></kbd> <em>`!Questions`</em>: A set of questions.
+ - <kbd><strong>questions*</strong></kbd> <em><code><a href="#type-questions" title="A set of questions.">!Questions</a></code></em>: A set of questions.
  - <kbd>timeout</kbd> <em>`number`</em> (optional): How long to wait before rejecting the promise. Waits forever by default.
+
+<code>!Object&lt;string, (string \| <a href="#type-question" title="A question.">!Question</a>)&gt;</code> __<a name="type-questions">`Questions`</a>__: A set of questions.
 
 ```js
 import ask from 'reloquent'
