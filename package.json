@@ -8,9 +8,9 @@
     "t": "zoroaster -a",
     "test": "yarn t test/spec test/mask",
     "mask": "yarn t test/mask",
-    "test-build": "ALAMODE_ENV=test-build yarn test",
+    "test-build": "yarn test -e test-build",
     "b": "alamode src -o build -s",
-    "doc": "NODE_DEBUG=doc doc -o README.md",
+    "doc": "doc -o README.md -d -a",
     "build": "yarn-s d b doc",
     "e": "alanode",
     "lint": "eslint .",
@@ -44,18 +44,18 @@
   "bugs": {
     "url": "https://github.com/artdecocode/reloquent/issues"
   },
-  "homepage": "https://github.com/artdecocode/reloquent#readme",
+  "homepage": "https://www.artd.eco",
   "devDependencies": {
-    "alamode": "^2.3.6",
+    "alamode": "^3.5.1",
     "catchment": "^3.3.0",
-    "documentary": "^1.29.0",
+    "documentary": "^1.37.0",
     "eslint-config-artdeco": "1.0.1",
     "forkfeed": "^1.1.1",
     "spawncommand": "^2.2.0",
-    "yarn-s": "1.1.0",
-    "zoroaster": "^4.1.1-alpha"
+    "yarn-s": "1.2.3",
+    "zoroaster": "^4.3.0"
   },
   "dependencies": {
-    "promto": "^1.1.2"
+    "promto": "^1.2.0"
   }
 }
