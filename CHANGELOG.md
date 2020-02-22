@@ -4,8 +4,6 @@
 
 - [doc] Appveyor badge.
 
-## 22 February 2020
-
 ### [1.4.0](https://github.com/artdecocode/reloquent/compare/v1.3.2...v1.4.0)
 
 - [feature] Questions now extend `readline.ReadLineOptions`.
