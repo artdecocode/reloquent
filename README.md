@@ -22,7 +22,7 @@ npm i reloquent
   * [<code>password</code>](#password)
   * [<code>Question</code>](#type-question)
 - [`async askSingle(question: (string|!Question), timeout=: number): string`](#async-asksinglequestion-stringquestiontimeout-number-string)
-- [`async ask(questions: <string, Question>, timeout?: number): object`](#async-askquestions-string-questiontimeout-number-object)
+- [`async askQuestions(questions: !Questions, timeout=: number): !Object<string, string>`](#async-askquestionsquestions-questionstimeout-number-objectstring-string)
 - [`async confirm(question: (string|!Question), options=: !ConfirmOptions): boolean`](#async-confirmquestion-stringquestionoptions-confirmoptions-boolean)
   * [`ConfirmOptions`](#type-confirmoptions)
 - [Copyright](#copyright)
@@ -280,9 +280,12 @@ I desire it much!
   <img src="/.documentary/section-breaks/3.svg?sanitize=true">
 </a></p>
 
-## <code>async <ins>ask</ins>(</code><sub><br/>&nbsp;&nbsp;`questions: <string, Question>,`<br/>&nbsp;&nbsp;`timeout?: number,`<br/></sub><code>): <i>object</i></code>
+## <code>async <ins>askQuestions</ins>(</code><sub><br/>&nbsp;&nbsp;`questions: !Questions,`<br/>&nbsp;&nbsp;`timeout=: number,`<br/></sub><code>): <i>!Object<string, string></i></code>
+Ask user a series of questions via CLI and transform them into answers.
+    Returns an object with keys as questions' texts and values as answers.
 
-Ask a series of questions and transform them into answers.
+ - <kbd><strong>questions*</strong></kbd> <em>`!Questions`</em>: A set of questions.
+ - <kbd>timeout</kbd> <em>`number`</em> (optional): How long to wait before rejecting the promise. Waits forever by default.
 
 ```js
 import ask from 'reloquent'
@@ -318,12 +321,12 @@ If when provided with the following answers (leaving _Date_ as it is), the resul
 ```
 Title: hello
 Description: [A test default value] world
-Date: [2/22/2020, 20:01:32] 
+Date: [2/22/2020, 21:37:04] 
 
 Result: {
   "title": "hello",
   "description": "world",
-  "date": "2/22/2020, 20:01:32"
+  "date": "2/22/2020, 21:37:04"
 }
 ```
 
