@@ -18,5 +18,6 @@ export default makeTestSuite('test/result/default', {
         SRC: TEST_COMPILE ? '../..' : '../../src', 
       },
     },
+    normaliseOutputs: true,
   }
 })
