@@ -1,3 +1,8 @@
+/**
+ * @fileoverview
+ * @externs
+ */
+
 /* typal types/confirm.xml */
 /** @const */
 var _reloquent = {}
@@ -10,6 +15,7 @@ _reloquent.ConfirmOptions
 /* typal types/index.xml */
 /**
  * A question.
+ * @extends {readline.ReadLineOptions}
  * @record
  */
 _reloquent.Question
@@ -24,6 +30,11 @@ _reloquent.Question.prototype.text
  */
 _reloquent.Question.prototype.defaultValue
 /**
+ * Hide the inputs behind `*` when typing the answer. Default `false`.
+ * @type {boolean|undefined}
+ */
+_reloquent.Question.prototype.password
+/**
  * The function which will get the default value, possibly asynchronously.
  * @type {(function(): (string|!Promise<string>))|undefined}
  */
@@ -32,19 +43,28 @@ _reloquent.Question.prototype.getDefault = function() {}
  * The validation function which should throw on error.
  * @type {(function(string): void)|undefined}
  */
-_reloquent.Question.prototype.validation = function() {}
+_reloquent.Question.prototype.validation = function(answer) {}
 /**
  * The transformation function for the answer.
  * @type {(function(string): (string|!Promise<string>))|undefined}
  */
-_reloquent.Question.prototype.postProcess = function() {}
-/**
- * Hide the inputs behind `*` when typing the answer.
- * @type {boolean|undefined}
- */
-_reloquent.Question.prototype.password
+_reloquent.Question.prototype.postProcess = function(answer) {}
 /**
  * A set of questions.
  * @typedef {!Object<string, string|!_reloquent.Question>}
  */
 _reloquent.Questions
+
+/* typal types/api.xml */
+/**
+ * Ask user a question via the CLI. Returns the answer to the question. 
+    If a timeout is passed, the promise will expire after the specified 
+    number of milliseconds if the answer was not given.
+ * @typedef {function((string|!_reloquent.Question),number=): !Promise<string>}
+ */
+_reloquent.askSingle
+/**
+ * Ask a yes/no question. Returns `true` when answer was `y` and `false` otherwise.
+ * @typedef {function((string|!_reloquent.Question),!_reloquent.ConfirmOptions=): !Promise<boolean>}
+ */
+_reloquent.confirm

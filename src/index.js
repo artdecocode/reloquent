@@ -11,9 +11,7 @@ export default async function reloquent(questions, timeout) {
 }
 
 /**
- * Ask user a question via the CLI. Returns the answer to the question.
- * @param {string|!_reloquent.Question} question A question to present to the user.
- * @param {number} [timeout] How long to wait before rejecting the promise. Waits forever by default.
+ * @type {_reloquent.askSingle}
  */
 export async function askSingle(question, timeout) {
   const { question: answer } = await askQuestions({ question }, timeout)
@@ -21,23 +19,24 @@ export async function askSingle(question, timeout) {
 }
 
 /**
- * Ask a yes/no question. Returns `true` when answer was `y` and `false` otherwise.
- * @param {string} question The question, such as "Add default options", or "Continue to delete?".
- * @param {_reloquent.ConfirmOptions} [options] Options for the confirmation question.
- * @param {boolean} [options.defaultYes=true] Whether the default value is _yes_. Default `true`.
- * @param {number} [options.timeout] How long to wait before rejecting the promise. Waits forever by default.
+ * @type {_reloquent.confirm}
  */
 export async function confirm(question, options = {}) {
   const {
     defaultYes = true,
     timeout,
   } = options
-  const hasQ = question.endsWith('?')
-  const text = `${hasQ ? question.replace(/\?$/, '') : question} (y/n)${hasQ ? '?' : ''}`
+  const Q = typeof question == 'string' ? {
+    text: question,
+  } : question
+  const { text } = question
+  const hasQ = text.endsWith('?')
+  const realText = `${hasQ ? text.replace(/\?$/, '') : text} (y/n)${hasQ ? '?' : ''}`
   const { question: answer } = await askQuestions({
     question: {
-      text,
       defaultValue: defaultYes ? 'y' : 'n',
+      ...question,
+      text: realText,
     },
   }, timeout)
   return answer == 'y'
@@ -45,13 +44,21 @@ export async function confirm(question, options = {}) {
 
 /**
  * @suppress {nonStandardJsDocs}
- * @typedef {import('../types').ConfirmOptions} _reloquent.ConfirmOptions
+ * @typedef {import('..').ConfirmOptions} _reloquent.ConfirmOptions
  */
 /**
  * @suppress {nonStandardJsDocs}
- * @typedef {import('../types').Question} _reloquent.Question
+ * @typedef {import('..').Question} _reloquent.Question
  */
 /**
  * @suppress {nonStandardJsDocs}
- * @typedef {import('../types').Questions} _reloquent.Questions
+ * @typedef {import('..').Questions} _reloquent.Questions
+ */
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('../types').askSingle} _reloquent.askSingle
+ */
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('../types').confirm} _reloquent.confirm
  */

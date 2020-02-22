@@ -1,23 +1,26 @@
 <types namespace="_reloquent">
-  <type record name="Question" desc="A question.">
+  <import name="ReadLineOptions" from="readline" />
+  <record name="Question" extends="readline.ReadLineOptions" desc="A question.">
     <prop string name="text">
       The text to show to the user.
     </prop>
     <prop opt string name="defaultValue">
       The default answer to the question.
     </prop>
-    <prop opt name="getDefault" type="function(): (string|!Promise<string>)">
+    <fn opt name="getDefault" return="(string|!Promise<string>)">
       The function which will get the default value, possibly asynchronously.
-    </prop>
-    <prop opt name="validation" type="function(string): void">
+    </fn>
+    <fn opt name="validation" void>
+      <arg string name="answer">The received answer.</arg>
       The validation function which should throw on error.
-    </prop>
-    <prop opt name="postProcess" type="function(string): (string|!Promise<string>)">
+    </fn>
+    <fn opt name="postProcess" return="(string|!Promise<string>)">
+      <arg string name="answer">The received answer.</arg>
       The transformation function for the answer.
-    </prop>
+    </fn>
     <prop name="password" boolean default="false">
       Hide the inputs behind `*` when typing the answer.
     </prop>
-  </type>
+  </record>
   <type name="Questions" type="!Object<string, string|!_reloquent.Question>" desc="A set of questions." />
 </types>

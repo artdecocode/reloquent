@@ -58,6 +58,7 @@ export default async function askQuestions(questions, timeout) {
     const { 'promise': promise } = ask(text, {
       timeout,
       password: question.password,
+      ...question,
     })
 
     const a = await promise
@@ -80,9 +81,9 @@ export default async function askQuestions(questions, timeout) {
 
 /**
  * @suppress {nonStandardJsDocs}
- * @typedef {import('../../types').Questions} _reloquent.Questions
+ * @typedef {import('../..').Questions} _reloquent.Questions
  */
 /**
  * @suppress {nonStandardJsDocs}
- * @typedef {import('../../types').Question} _reloquent.Question
+ * @typedef {import('../..').Question} _reloquent.Question
  */

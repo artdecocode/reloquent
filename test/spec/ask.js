@@ -1,4 +1,4 @@
-import { equal, ok, throws } from 'zoroaster/assert'
+import { equal, ok, throws } from '@zoroaster/assert'
 import events from 'events'
 import { PassThrough } from 'stream'
 import { collect } from 'catchment'

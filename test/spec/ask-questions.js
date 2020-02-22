@@ -1,4 +1,4 @@
-import { throws, equal, deepEqual } from 'zoroaster/assert'
+import { throws, equal, deepEqual } from '@zoroaster/assert'
 import askQuestions from '../../src/lib/ask-questions'
 
 const T = {

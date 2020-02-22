@@ -1,3 +1,4 @@
+import { Readable } from 'stream'
 import ask from '../../src/lib/ask'
 
 const ORIGINAL_WRITE = process.stdout.write.bind(process.stdout)
@@ -5,6 +6,15 @@ const ORIGINAL_WRITE = process.stdout.write.bind(process.stdout)
  * This context will proxy calls to the ask method to close the readline.
  */
 export default class Context {
+  makeStdin(answer = '\n') {
+    const stdin = new Readable({
+      read() {
+        this.push(answer)
+        this.push(null)
+      }
+    })
+    return stdin
+  }
   _init() {
     this.stdout = []
     process.stdout.write = (...args) => {
