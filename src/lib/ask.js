@@ -43,11 +43,16 @@ export default function ask(question, options = {}) {
       }
     }
   }
-  const p = new Promise(rl.question.bind(rl, question))
+  const p = new Promise((r) => {
+    rl.question(question, r)
+  })
 
-  const promise = timeout
-    ? promto(p, timeout, `reloquent: ${question}`)
-    : p
+  let promise
+  if (timeout) {
+    promise = promto(p, timeout, `reloquent: ${question}`)
+  } else {
+    promise = p
+  }
   /**
    * @suppress {checkTypes}
    */
@@ -55,6 +60,11 @@ export default function ask(question, options = {}) {
   return rl
 }
 
+/**
+ * 
+ * @param {!Promise} promise 
+ * @param {!readline.Interface} rl 
+ */
 const tryPromise = async (promise, rl) => {
   try {
     const res = await promise
@@ -75,4 +85,8 @@ const tryPromise = async (promise, rl) => {
 /**
  * @suppress {nonStandardJsDocs}
  * @typedef {import('readline').ReadLineOptions} readline.ReadLineOptions
+ */
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('readline').Interface} readline.Interface
  */

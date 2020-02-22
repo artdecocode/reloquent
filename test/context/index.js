@@ -1,7 +1,7 @@
 import { Readable } from 'stream'
 import ask from '../../src/lib/ask'
 
-const ORIGINAL_WRITE = process.stdout.write.bind(process.stdout)
+// const ORIGINAL_WRITE = process.stdout.write.bind(process.stdout)
 /**
  * This context will proxy calls to the ask method to close the readline.
  */
@@ -16,11 +16,11 @@ export default class Context {
     return stdin
   }
   _init() {
-    this.stdout = []
-    process.stdout.write = (...args) => {
-      this.stdout.push(...args)
-      ORIGINAL_WRITE(...args)
-    }
+    // this.stdout = []
+    // process.stdout.write = (...args) => {
+    //   this.stdout.push(...args)
+    //   ORIGINAL_WRITE(...args)
+    // }
   }
   ask(question, options) {
     if (this.rl)
@@ -29,7 +29,7 @@ export default class Context {
     return this.rl
   }
   async _destroy() {
-    process.stdout.write = ORIGINAL_WRITE
+    // process.stdout.write = ORIGINAL_WRITE
     if (this.rl) {
       this.rl.close()
     }

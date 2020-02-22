@@ -8,14 +8,6 @@ import Catchment from 'catchment'
  */
 const T = {
   context: Context,
-  async'asks a single question as a string'() {
-    const answer = 'answer'
-    const p = askSingle('test')
-    await new Promise(r => setTimeout(r, 100))
-    process.stdin.push(`${answer}\n`)
-    const res = await p
-    equal(res, answer)
-  },
   async'asks a single question as an object'({ makeStdin }) {
     const answer = 'answer'
     const res = await askSingle({
